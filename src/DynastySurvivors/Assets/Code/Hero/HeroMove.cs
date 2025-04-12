@@ -1,3 +1,4 @@
+using Code;
 using Code.Infrastructure;
 using Code.Services.Input;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class HeroMove : MonoBehaviour
         _inputService = Game.InputService;
     }
 
-    private void Start() => 
+    private void Start() =>
         _camera = Camera.main;
 
     private void Update()

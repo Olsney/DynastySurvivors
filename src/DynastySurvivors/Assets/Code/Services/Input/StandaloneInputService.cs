@@ -18,6 +18,6 @@ namespace Code.Services.Input
         }
 
         private static Vector2 UnityAxis() => 
-            new(UnityEngine.Input.GetAxis(Horizontal), UnityEngine.Input.GetAxis(Vertical));
+            new Vector2(UnityEngine.Input.GetAxis(Horizontal), UnityEngine.Input.GetAxis(Vertical));
     }
 }

@@ -7,9 +7,23 @@ namespace Code.Infrastructure
 {
     public class SceneLoader
     {
-        public IEnumerator LoadScene(string name, Action onLoaded = null)
+        private readonly ICoroutineRunner _coroutineRunner;
+
+        public SceneLoader(ICoroutineRunner coroutineRunner) => 
+            _coroutineRunner = coroutineRunner;
+        
+        public void Load(string name, Action onLoaded = null) =>
+            _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
+        
+        public IEnumerator LoadScene(string nextScene, Action onLoaded = null)
         {
-            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(name);
+            if (SceneManager.GetActiveScene().name == nextScene)
+            {
+                onLoaded?.Invoke();
+                yield break;
+            }
+            
+            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
 
             while (!waitNextScene.isDone)
                 yield return null;

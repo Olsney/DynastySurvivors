@@ -8,11 +8,11 @@ namespace Code.Infrastructure
         private readonly Dictionary<Type,IState> _states;
         private IState _activeState;
 
-        public GameStateMachine()
+        public GameStateMachine(SceneLoader sceneLoad)
         {
             _states = new Dictionary<Type, IState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(this),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoad),
             };
         }
         

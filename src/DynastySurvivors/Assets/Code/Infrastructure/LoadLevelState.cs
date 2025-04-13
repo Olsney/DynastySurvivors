@@ -1,4 +1,5 @@
 ﻿using Code.CameraLogic;
+using Code.Logic;
 using UnityEngine;
 
 namespace Code.Infrastructure
@@ -6,33 +7,39 @@ namespace Code.Infrastructure
     public class LoadLevelState : IPayloadedState<string>
     {
         private const string HeroPath = "Hero/Chr_Hero_Female_01";
-        private const string Hud = "Hud/Hud";
+        private const string HudPath = "Hud/Hud";
         private const string InitialPoint = "InitialPoint";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
+        private readonly LoadingCurtain _curtain;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _curtain = curtain;
         }
 
-        public void Enter(string sceneName) => 
-            _sceneLoader.Load(sceneName, OnLoaded);
-
-        public void Exit()
+        public void Enter(string sceneName)
         {
+            _curtain.Show();
+            _sceneLoader.Load(sceneName, OnLoaded);
         }
+
+        public void Exit() => 
+            _curtain.Hide();
 
         private void OnLoaded()
         {
 
             GameObject initialPoint = GameObject.FindWithTag(InitialPoint);
             GameObject hero = Instantiate(HeroPath, at: initialPoint.transform.position);
-            Instantiate(Hud);
+            Instantiate(HudPath);
             
             CameraFollow(hero);
+            
+            _stateMachine.Enter<GameLoopState>();
         }
 
         private void CameraFollow(GameObject hero) => 

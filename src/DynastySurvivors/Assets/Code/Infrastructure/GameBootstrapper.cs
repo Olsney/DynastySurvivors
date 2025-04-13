@@ -1,3 +1,4 @@
+using Code.Logic;
 using UnityEngine;
 
 namespace Code.Infrastructure
@@ -6,9 +7,11 @@ namespace Code.Infrastructure
     {
         private Game _game;
 
+        public LoadingCurtain Curtain;
+        
         private void Awake()
         {
-            _game = new Game(this);
+            _game = new Game(this, Curtain);
             _game.StateMachine.Enter<BootstrapState>();
 
             DontDestroyOnLoad(this);

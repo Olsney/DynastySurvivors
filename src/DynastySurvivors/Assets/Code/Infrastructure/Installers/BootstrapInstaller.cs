@@ -31,8 +31,7 @@ namespace Code.Infrastructure.Installers
 
         private void BindServices()
         {
-            // BindInputService();
-            Container.Bind<IInputService>().To<StandaloneInputService>().AsSingle();
+            BindInputService();
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();

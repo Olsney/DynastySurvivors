@@ -74,3 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3705e3665a644323ac2abf25d15f724d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _curtain: {fileID: 5806811878629747307, guid: 1b76a716b7243594ebe407010a0b3c2f, type: 3}
+  _gameRunner: {fileID: 3315084848061929700, guid: 45711e17c6c684b40aa81024d8bccaaa, type: 3}
+  _gameBootstrapper: {fileID: 6728149620573183812, guid: 81dacad4b6c745d4e99071476dd1fd66, type: 3}
+  _coroutineRunner: {fileID: 688490440528593096, guid: 2d927860b8e2e0540ad3bac56c8141d2, type: 3}

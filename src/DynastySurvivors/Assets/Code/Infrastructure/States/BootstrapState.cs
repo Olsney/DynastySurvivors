@@ -13,15 +13,15 @@ namespace Code.Infrastructure.States
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
-        private readonly AllServices _services;
+        // private readonly AllServices _services;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
-            _services = services;
+            // _services = services;
             
-            RegisterServices();
+            // RegisterServices();
         }
 
         public void Enter()
@@ -34,24 +34,24 @@ namespace Code.Infrastructure.States
             _stateMachine.Enter<LoadLevelState, string>(Main);
         }
 
-        private void RegisterServices()
-        {
-            _services.RegisterSingle<IInputService>(InputService());
-            _services.RegisterSingle<IAssetProvider>(new AssetProvider());
-            _services.RegisterSingle<IGameFactory>(
-                new GameFactory(_services.Single<IAssetProvider>()));
-        }
+        // private void RegisterServices()
+        // {
+        //     _services.RegisterSingle<IInputService>(InputService());
+        //     _services.RegisterSingle<IAssetProvider>(new AssetProvider());
+        //     _services.RegisterSingle<IGameFactory>(
+        //         new GameFactory(_services.Single<IAssetProvider>()));
+        // }
 
         public void Exit()
         {
         }
 
-        private static IInputService InputService()
-        {
-            if (Application.isEditor)
-                return new StandaloneInputService();
-            else
-                return new MobileInputService();
-        }
+        // private static IInputService InputService()
+        // {
+        //     if (Application.isEditor)
+        //         return new StandaloneInputService();
+        //     else
+        //         return new MobileInputService();
+        // }
     }
 }

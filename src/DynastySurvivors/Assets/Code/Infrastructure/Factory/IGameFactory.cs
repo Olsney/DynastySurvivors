@@ -7,5 +7,6 @@ namespace Code.Infrastructure.Factory
     {
         GameObject CreateHero(GameObject at);
         void CreateHud();
+        GameObject CreateCurtain();
     }
 }

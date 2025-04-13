@@ -1,6 +1,7 @@
 ﻿using Code.CameraLogic;
 using Code.Infrastructure.Factory;
 using Code.Logic;
+using Code.Logic.Curtain;
 using UnityEngine;
 
 namespace Code.Infrastructure.States
@@ -11,25 +12,30 @@ namespace Code.Infrastructure.States
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
-        private readonly LoadingCurtain _curtain;
+        private readonly LoadingCurtainProvider _loadingCurtain;
         private readonly IGameFactory _gameFactory;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, IGameFactory gameFactory)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory, LoadingCurtainProvider loadingCurtain)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
-            _curtain = curtain;
+            // _curtain = curtain;
             _gameFactory = gameFactory;
+            _loadingCurtain = loadingCurtain;
         }
 
         public void Enter(string sceneName)
         {
-            _curtain.Show();
+            // _curtain.Show();
+            _loadingCurtain.Instance.Show();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
-        public void Exit() => 
-            _curtain.Hide();
+        public void Exit()
+        {
+            // _curtain.Hide();
+            _loadingCurtain.Instance.Hide();
+        }
 
         private void OnLoaded()
         {

@@ -4,6 +4,7 @@ using Code.Infrastructure;
 using Code.Infrastructure.Services;
 using Code.Services.Input;
 using UnityEngine;
+using Zenject;
 
 public class HeroMove : MonoBehaviour
 {
@@ -13,17 +14,19 @@ public class HeroMove : MonoBehaviour
     private IInputService _inputService;
     private Camera _camera;
 
+    [Inject]
+    public void Construct(IInputService inputService)
+    {
+        _inputService = inputService;
+    }
+
     private void Awake()
     {
-        _inputService = AllServices.Container.Single<IInputService>();
-
-        _characterController = GetComponent<CharacterController>();
+        // _inputService = AllServices.Container.Single<IInputService>();
     }
 
-    private void Start()
-    {
+    private void Start() => 
         _camera = Camera.main;
-    }
 
     private void Update()
     {

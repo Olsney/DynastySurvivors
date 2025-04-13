@@ -39,7 +39,7 @@ public class HeroMove : MonoBehaviour
 
         movementVector += Physics.gravity;
 
-        _characterController.Move(_movementSpeed * movementVector * Time.deltaTime);
+        _characterController.Move(movementVector * (_movementSpeed * Time.deltaTime));
     }
 
     private void CameraFollow() => 

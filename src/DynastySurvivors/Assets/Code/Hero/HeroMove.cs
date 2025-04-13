@@ -20,8 +20,6 @@ public class HeroMove : MonoBehaviour
     private void Start()
     {
         _camera = Camera.main;
-
-        CameraFollow();
     }
 
     private void Update()
@@ -41,7 +39,4 @@ public class HeroMove : MonoBehaviour
 
         _characterController.Move(movementVector * (_movementSpeed * Time.deltaTime));
     }
-
-    private void CameraFollow() => 
-        _camera.GetComponent<CameraFollow>().Follow(gameObject);
 }

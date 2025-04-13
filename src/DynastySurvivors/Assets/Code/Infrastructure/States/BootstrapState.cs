@@ -1,7 +1,10 @@
+using Code.Infrastructure.AssetManagement;
+using Code.Infrastructure.Factory;
+using Code.Infrastructure.Services;
 using Code.Services.Input;
 using UnityEngine;
 
-namespace Code.Infrastructure
+namespace Code.Infrastructure.States
 {
     public class BootstrapState : IState
     {
@@ -31,6 +34,9 @@ namespace Code.Infrastructure
         private void RegisterServices()
         {
             Game.InputService = RegisterInputService();
+
+            AllServices.Container.RegisterSingle<IGameFactory>(
+                new GameFactory(AllServices.Container.Single<IAssetProvider>()));
         }
 
         public void Exit()
@@ -44,6 +50,5 @@ namespace Code.Infrastructure
             else
                 return new MobileInputService();
         }
-
     }
 }

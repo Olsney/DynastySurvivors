@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Code.Logic;
 
-namespace Code.Infrastructure
+namespace Code.Infrastructure.States
 {
     public class GameStateMachine
     {

@@ -13,6 +13,7 @@ namespace Code.Infrastructure
             _states = new Dictionary<Type, IState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoad),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoad),
             };
         }
         

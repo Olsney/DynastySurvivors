@@ -24,7 +24,7 @@ namespace Code.Infrastructure
             _loadingCurtainProvider = loadingCurtainProvider;
         }
         
-        private void Awake()
+        private void Start()
         {
             // _game = new Game(this, Curtain);
             // _game.StateMachine.Enter<BootstrapState>();

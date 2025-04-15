@@ -1,9 +1,9 @@
 ﻿using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.States;
-using Code.Logic;
 using Code.Logic.Curtain;
 using Code.Services.Input;
+using Code.Services.PersistentProgress;
 using UnityEngine;
 using Zenject;
 
@@ -35,6 +35,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
+            Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
         }
 
         private void BindStates()

@@ -1,48 +1,54 @@
-using Code;
-using Code.CameraLogic;
-using Code.Infrastructure;
-using Code.Infrastructure.Services;
+using Code.Data;
 using Code.Services.Input;
+using Code.Services.PersistentProgress;
 using UnityEngine;
 using Zenject;
 
-public class HeroMove : MonoBehaviour
+namespace Code.Hero
 {
-    [SerializeField] private CharacterController _characterController;
-    [SerializeField] private float _movementSpeed;
-
-    private IInputService _inputService;
-    private Camera _camera;
-
-    [Inject]
-    public void Construct(IInputService inputService)
+    [RequireComponent(typeof(CharacterController))]
+    public class HeroMove : MonoBehaviour, ISavedProgress
     {
-        _inputService = inputService;
-    }
+        [SerializeField] private CharacterController _characterController;
+        [SerializeField] private float _movementSpeed;
 
-    private void Awake()
-    {
-        // _inputService = AllServices.Container.Single<IInputService>();
-    }
+        private IInputService _inputService;
+        private Camera _camera;
 
-    private void Start() => 
-        _camera = Camera.main;
-
-    private void Update()
-    {
-        Vector3 movementVector = Vector3.zero;
-
-        if (_inputService.Axis.sqrMagnitude > Constants.Epsilon)
+        [Inject]
+        public void Construct(IInputService inputService)
         {
-            movementVector = _camera.transform.TransformDirection(_inputService.Axis);
-            movementVector.y = 0;
-            movementVector.Normalize();
+            _inputService = inputService;
+        }
+        
+        private void Start() => 
+            _camera = Camera.main;
 
-            transform.forward = movementVector;
+        private void Update()
+        {
+            Vector3 movementVector = Vector3.zero;
+
+            if (_inputService.Axis.sqrMagnitude > Constants.Epsilon)
+            {
+                movementVector = _camera.transform.TransformDirection(_inputService.Axis);
+                movementVector.y = 0;
+                movementVector.Normalize();
+
+                transform.forward = movementVector;
+            }
+
+            movementVector += Physics.gravity;
+
+            _characterController.Move(movementVector * (_movementSpeed * Time.deltaTime));
         }
 
-        movementVector += Physics.gravity;
+        public void LoadProgress(PlayerProgress progress)
+        {
+            progress.WorldData.Position = transform.position.AsVectorData();
+        }
 
-        _characterController.Move(movementVector * (_movementSpeed * Time.deltaTime));
+        public void UpdateProgress(PlayerProgress progress)
+        {
+        }
     }
 }

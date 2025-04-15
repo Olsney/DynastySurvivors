@@ -39,18 +39,19 @@ namespace Code.Infrastructure.States
 
         private void OnLoaded()
         {
-            GameObject hero = _gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPoint));
+            InitGameWorld();
 
-            _gameFactory.CreateHud();
-            
-            CameraFollow(hero);
-            
             _stateMachine.Enter<GameLoopState>();
         }
 
+        private void InitGameWorld()
+        {
+            GameObject hero = _gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPoint));
+            _gameFactory.CreateHud();
+            CameraFollow(hero);
+        }
+
         private void CameraFollow(GameObject hero) => 
-            Camera.main
-                .GetComponent<CameraFollow>()
-                .Follow(hero);
+            Camera.main.GetComponent<CameraFollow>().Follow(hero);
     }
 }

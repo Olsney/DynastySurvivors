@@ -9,19 +9,8 @@ namespace Code.Infrastructure.States
 {
     public class GameStateMachine
     {
-        // private readonly Dictionary<Type, IExitableState> _states;
         private readonly IStateFactory _stateFactory;
         private IExitableState _activeState;
-
-        // public GameStateMachine(SceneLoader sceneLoad, LoadingCurtain curtain, AllServices services)
-        // {
-        //     _states = new Dictionary<Type, IExitableState>()
-        //     {
-        //         [typeof(BootstrapState)] = new BootstrapState(this, sceneLoad, services),
-        //         [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoad, curtain, services.Single<IGameFactory>()),
-        //         [typeof(GameLoopState)] = new GameLoopState(this),
-        //     };
-        // }
 
         public GameStateMachine(IStateFactory stateFactory)
         {
@@ -50,9 +39,6 @@ namespace Code.Infrastructure.States
 
             return state;
         }
-
-        // private TState GetState<TState>() where TState : class, IExitableState => 
-        //     _states[typeof(TState)] as TState;
 
         private TState GetState<TState>() where TState : class, IExitableState =>
             _stateFactory.GetState<TState>();

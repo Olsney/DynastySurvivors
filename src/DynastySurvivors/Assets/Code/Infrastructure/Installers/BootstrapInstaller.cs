@@ -42,8 +42,9 @@ namespace Code.Infrastructure.Installers
         {
             Container.Bind<GameStateMachine>().AsSingle();
             Container.Bind<BootstrapState>().AsSingle();
-            Container.Bind<GameLoopState>().AsSingle();
             Container.Bind<LoadLevelState>().AsSingle();
+            Container.Bind<LoadProgressState>().AsSingle();
+            Container.Bind<GameLoopState>().AsSingle();
         }
         
         private void BindSceneLoader() => 

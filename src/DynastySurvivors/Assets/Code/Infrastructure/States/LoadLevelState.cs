@@ -2,6 +2,7 @@
 using Code.Infrastructure.Factory;
 using Code.Logic;
 using Code.Logic.Curtain;
+using Code.Services.PersistentProgress;
 using UnityEngine;
 
 namespace Code.Infrastructure.States
@@ -13,15 +14,22 @@ namespace Code.Infrastructure.States
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtainProvider _loadingCurtain;
+        private readonly IPersistentProgressService _persistentProgressService;
         private readonly IGameFactory _gameFactory;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory, LoadingCurtainProvider loadingCurtain)
+        public LoadLevelState(
+            GameStateMachine stateMachine,
+            SceneLoader sceneLoader,
+            IGameFactory gameFactory,
+            LoadingCurtainProvider loadingCurtain,
+            IPersistentProgressService persistentProgressService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             // _curtain = curtain;
             _gameFactory = gameFactory;
             _loadingCurtain = loadingCurtain;
+            _persistentProgressService = persistentProgressService;
         }
 
         public void Enter(string sceneName)
@@ -41,6 +49,7 @@ namespace Code.Infrastructure.States
         private void OnLoaded()
         {
             InitGameWorld();
+            InformProgressReaders();
 
             _stateMachine.Enter<GameLoopState>();
         }
@@ -50,6 +59,12 @@ namespace Code.Infrastructure.States
             GameObject hero = _gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPoint));
             _gameFactory.CreateHud();
             CameraFollow(hero);
+        }
+
+        private void InformProgressReaders()
+        {
+            foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders) 
+                progressReader.LoadProgress(_persistentProgressService.Progress);
         }
 
         private void CameraFollow(GameObject hero) => 

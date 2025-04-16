@@ -28,6 +28,7 @@ namespace Code.Infrastructure.States
         {
             // _curtain.Show();
             _loadingCurtain.Instance.Show();
+            _gameFactory.Cleanup();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 

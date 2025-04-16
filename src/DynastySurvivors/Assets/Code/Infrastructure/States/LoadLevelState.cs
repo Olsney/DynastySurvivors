@@ -64,7 +64,6 @@ namespace Code.Infrastructure.States
 
         private void InformProgressReaders()
         {
-            Debug.Log("InformProgressReaders");
             foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders) 
                 progressReader.LoadProgress(_persistentProgressService.Progress);
         }

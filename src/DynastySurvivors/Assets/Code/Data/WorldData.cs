@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace Code.Data
 {
@@ -6,11 +8,12 @@ namespace Code.Data
     public class WorldData
     {
         public PositionOnLevel PositionOnLevel;
-        public int TriggerID;
+        [FormerlySerializedAs("VisitedTriggerIDs")] [FormerlySerializedAs("TriggerIDs")] public List<int> VisitedTriggerIds;
 
         public WorldData(string initialLevel)
         {
             PositionOnLevel = new PositionOnLevel(initialLevel);
+            VisitedTriggerIds = new List<int>();
         }
     }
 }

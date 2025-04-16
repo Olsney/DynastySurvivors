@@ -56,6 +56,7 @@ namespace Code.Infrastructure.States
 
         private void InitGameWorld()
         {
+            _gameFactory.CreateSaveTriggerContainer();
             GameObject hero = _gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPoint));
             _gameFactory.CreateHud();
             CameraFollow(hero);
@@ -63,6 +64,7 @@ namespace Code.Infrastructure.States
 
         private void InformProgressReaders()
         {
+            Debug.Log("InformProgressReaders");
             foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders) 
                 progressReader.LoadProgress(_persistentProgressService.Progress);
         }

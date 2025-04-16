@@ -6,6 +6,8 @@ namespace Code.Infrastructure.States
 {
     public class LoadProgressState : IState
     {
+        private const string InitialLevel = "Main";
+        
         private readonly GameStateMachine _stateMachine;
         private readonly IPersistentProgressService _progressService;
         private readonly ISaveLoadService _saveLoadService;
@@ -37,6 +39,6 @@ namespace Code.Infrastructure.States
         }
 
         private PlayerProgress NewProgress() =>
-            new PlayerProgress(initialLevel: "Main");
+            new PlayerProgress(initialLevel: InitialLevel);
     }
 }

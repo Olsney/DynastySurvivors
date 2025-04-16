@@ -11,7 +11,7 @@ namespace Code.Infrastructure.Factory
         private readonly IAssetProvider _assets;
         private readonly IInstantiator _container;
 
-        public List<ISavedProgressReader> ProgressReaders { get; set; } = new List<ISavedProgressReader>();
+        public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
         public GameFactory(IAssetProvider assets, IInstantiator container)

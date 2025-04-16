@@ -9,13 +9,10 @@ namespace Code.Infrastructure
 {
     public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
     {
-        // private Game _game;
         private GameStateMachine _gameStateMachine;
         private IGameFactory _gameFactory;
         private LoadingCurtainProvider _loadingCurtainProvider;
-
-        // public LoadingCurtain Curtain;
-
+        
         [Inject]
         private void Construct(GameStateMachine gameStateMachine, IGameFactory gameFactory, LoadingCurtainProvider loadingCurtainProvider)
         {
@@ -26,8 +23,6 @@ namespace Code.Infrastructure
         
         private void Start()
         {
-            // _game = new Game(this, Curtain);
-            // _game.StateMachine.Enter<BootstrapState>();
             CreateCurtain();
             _gameStateMachine.Enter<BootstrapState>();
 

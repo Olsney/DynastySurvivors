@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Code.Data;
 using Code.Services.PersistentProgress;
 using Code.Services.SaveLoad;
@@ -25,17 +24,13 @@ namespace Code.Logic
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log($"isTriggered in OnTriggerEnter - {_isTriggered}");
-
             if (_isTriggered)
                 return;
 
             _isTriggered = true;
 
             _saveLoadService.SaveProgress();
-
-            Debug.Log("Progress Saved");
-
+            
             gameObject.SetActive(false);
         }
 
@@ -51,16 +46,9 @@ namespace Code.Logic
 
         public void LoadProgress(PlayerProgress progress)
         {
-            Debug.Log("Мы загрузили прогресс");
-            Debug.Log($"isTriggered in LoadProgress - {_isTriggered}");
-
             if (progress.WorldData.VisitedTriggerIds.Contains(_id))
             {
-                Debug.Log("ID совпал!");
                 _isTriggered = true;
-                Debug.Log($"isTriggered После совпадения ID - {_isTriggered}. ВЫРУБАЮСЬ!!!");
-                Debug.Log($"{_id}");
-                // _collider.enabled = false;
                 gameObject.SetActive(false);
             }
         }
@@ -71,7 +59,6 @@ namespace Code.Logic
                 return;
             
             List<int> visitedTriggerIds = progress.WorldData.VisitedTriggerIds;
-
             
             if (!visitedTriggerIds.Contains(_id))
                 progress.WorldData.VisitedTriggerIds.Add(_id);

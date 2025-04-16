@@ -4,6 +4,7 @@ using Code.Infrastructure.States;
 using Code.Logic.Curtain;
 using Code.Services.Input;
 using Code.Services.PersistentProgress;
+using Code.Services.SaveLoad;
 using UnityEngine;
 using Zenject;
 
@@ -11,11 +12,6 @@ namespace Code.Infrastructure.Installers
 {
     public class BootstrapInstaller : MonoInstaller, ICoroutineRunner
     {
-        [SerializeField] private LoadingCurtain _curtain;
-        [SerializeField] private GameRunner _gameRunner;
-        [SerializeField] private GameBootstrapper _gameBootstrapper;
-        [SerializeField] private CoroutineRunner _coroutineRunner;
-        
         public override void InstallBindings()
         {
             BindCoroutine();
@@ -36,6 +32,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
             Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
+            Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
         }
 
         private void BindStates()

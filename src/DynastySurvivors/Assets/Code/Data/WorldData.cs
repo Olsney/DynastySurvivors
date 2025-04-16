@@ -7,5 +7,10 @@ namespace Code.Data
     {
         
         public PositionOnLevel PositionOnLevel;
+
+        public WorldData(string initialLevel)
+        {
+            PositionOnLevel = new PositionOnLevel(initialLevel);
+        }
     }
 }

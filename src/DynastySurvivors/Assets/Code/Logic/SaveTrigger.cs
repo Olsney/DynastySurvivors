@@ -1,4 +1,6 @@
 ﻿using System;
+using Code.Data;
+using Code.Services.PersistentProgress;
 using Code.Services.SaveLoad;
 using UnityEngine;
 using Zenject;
@@ -6,12 +8,14 @@ using Zenject;
 namespace Code.Logic
 {
     [RequireComponent(typeof(BoxCollider))]
-    public class SaveTrigger : MonoBehaviour
+    public class SaveTrigger : MonoBehaviour, ISavedProgress
     {
-        private ISaveLoadService _saveLoadService;
-
         [SerializeField] private BoxCollider _collider;
+        [SerializeField] private int _id;
         
+        private ISaveLoadService _saveLoadService;
+        private bool _isTriggered;
+
         [Inject]
         private void Construct(ISaveLoadService saveLoadService)
         {
@@ -20,6 +24,11 @@ namespace Code.Logic
 
         private void OnTriggerEnter(Collider other)
         {
+            if(_isTriggered)
+                return;
+            
+            _isTriggered = true;
+            
             _saveLoadService.SaveProgress();
             
             Debug.Log("Progress Saved");
@@ -35,6 +44,18 @@ namespace Code.Logic
             Gizmos.color = new Color32(30, 200, 30, 130);
             
             Gizmos.DrawCube(transform.position + _collider.center, _collider.size);
+        }
+
+        public void LoadProgress(PlayerProgress progress)
+        {
+            if (progress.WorldData.TriggerID == _id)
+                gameObject.SetActive(false);
+        }
+
+        public void UpdateProgress(PlayerProgress progress)
+        {
+            if (_isTriggered)
+                progress.WorldData.TriggerID = _id;
         }
     }
 }

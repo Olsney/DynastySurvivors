@@ -11,7 +11,7 @@ namespace Code.Services.SaveLoad
         
         private readonly IPersistentProgressService _progressService;
         private readonly IGameFactory _gameFactory;
-
+        
         public SaveLoadService(IPersistentProgressService progressService, IGameFactory gameFactory)
         {
             _progressService = progressService;

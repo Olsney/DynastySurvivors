@@ -5,8 +5,8 @@ namespace Code.Data
     [Serializable]
     public class WorldData
     {
-        
         public PositionOnLevel PositionOnLevel;
+        public int TriggerID;
 
         public WorldData(string initialLevel)
         {

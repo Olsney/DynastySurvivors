@@ -8,7 +8,7 @@ namespace Code.Enemy
 {
     public class EnemyMoveToHero : MonoBehaviour
     {
-        private const float MinDistanceToHero = 0.1f;
+        private const float MinDistanceToHero = 0.5f;
         
         [SerializeField]
         private NavMeshAgent _agent;

@@ -1066,6 +1066,7 @@ GameObject:
   - component: {fileID: 4833521822157380319}
   - component: {fileID: 7780317262682730589}
   - component: {fileID: 8723237862922046338}
+  - component: {fileID: 6849156259191077909}
   m_Layer: 0
   m_Name: Chr_Hero_Female_01
   m_TagString: Untagged
@@ -1175,6 +1176,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 4833521822157380319}
   _animator: {fileID: 363385000366019988}
+--- !u!65 &6849156259191077909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3349932211548729735}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3379887114862934720
 GameObject:
   m_ObjectHideFlags: 0

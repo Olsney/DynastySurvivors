@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Code.Enemy
 {
-    public class EnemyMoveToHero : MonoBehaviour
+    public class EnemyMoveToHero : Follower
     {
         private const float MinDistanceToHero = 0.5f;
         

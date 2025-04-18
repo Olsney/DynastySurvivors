@@ -50,6 +50,7 @@
     <Compile Include="Assets\Code\Infrastructure\CoroutineRunner.cs" />
     <Compile Include="Assets\Code\Enemy\EnemyMoveToHero.cs" />
     <Compile Include="Assets\Code\Infrastructure\Services\IService.cs" />
+    <Compile Include="Assets\Code\Logic\TriggerObserver.cs" />
     <Compile Include="Assets\Code\Services\PersistentProgress\ISavedProgressReader.cs" />
     <Compile Include="Assets\Code\Enemy\EnemyAnimator.cs" />
     <Compile Include="Assets\Code\Logic\IAnimationStateReader.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Assets\Code\Infrastructure\States\GameLoopState.cs" />
     <Compile Include="Assets\Code\Infrastructure\AssetManagement\IAssetProvider.cs" />
     <Compile Include="Assets\Code\Infrastructure\AssetManagement\AssetPath.cs" />
+    <Compile Include="Assets\Code\Enemy\EnemyRotateToHero.cs" />
     <Compile Include="Assets\Code\Infrastructure\SceneLoader.cs" />
     <Compile Include="Assets\Code\Infrastructure\States\GameStateMachine.cs" />
     <Compile Include="Assets\Code\Data\PositionOnLevel.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Assets\Code\Infrastructure\ICoroutineRunner.cs" />
     <Compile Include="Assets\Code\Logic\AnimatorState.cs" />
     <Compile Include="Assets\Code\Logic\SaveTrigger.cs" />
+    <Compile Include="Assets\Code\Enemy\Aggro.cs" />
     <Compile Include="Assets\Code\Infrastructure\Factory\StateFactory.cs" />
     <Compile Include="Assets\Code\Infrastructure\GameRunner.cs" />
     <Compile Include="Assets\Code\Services\SaveLoad\ISaveLoadService.cs" />

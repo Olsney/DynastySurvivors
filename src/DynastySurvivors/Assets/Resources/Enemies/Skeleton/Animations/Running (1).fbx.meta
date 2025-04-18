@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Run with arms up
+      name: Run
       takeName: mixamo.com
       internalID: 1827226128182048838
       firstFrame: 0

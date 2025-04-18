@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Assets\Code\Infrastructure\Installers\BootstrapInstaller.cs" />
     <Compile Include="Assets\Code\Infrastructure\CoroutineRunner.cs" />
+    <Compile Include="Assets\Code\Enemy\EnemyMoveToHero.cs" />
     <Compile Include="Assets\Code\Infrastructure\Services\IService.cs" />
     <Compile Include="Assets\Code\Services\PersistentProgress\ISavedProgressReader.cs" />
     <Compile Include="Assets\Code\Enemy\EnemyAnimator.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Code\Infrastructure\States\LoadProgressState.cs" />
     <Compile Include="Assets\Code\Infrastructure\Factory\IStateFactory.cs" />
     <Compile Include="Assets\Code\Logic\AnimatorStateReporter.cs" />
+    <Compile Include="Assets\Code\Enemy\AnimateAlongAgent.cs" />
     <Compile Include="Assets\Code\Infrastructure\States\LoadLevelState.cs" />
     <Compile Include="Assets\Code\Services\PersistentProgress\ISavedProgress.cs" />
     <Compile Include="Assets\Code\Services\SaveLoad\SaveLoadService.cs" />

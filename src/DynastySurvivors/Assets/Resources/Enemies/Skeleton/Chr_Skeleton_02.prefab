@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 7904801184297561779}
   - component: {fileID: 6096188848458084049}
   - component: {fileID: 9181306661027826823}
+  - component: {fileID: 6845193668131832341}
   m_Layer: 0
   m_Name: Chr_Skeleton_02
   m_TagString: Untagged
@@ -358,11 +359,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.1
-  m_Speed: 5
+  m_Speed: 3
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 1600
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -383,6 +384,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 6096188848458084049}
+--- !u!114 &6845193668131832341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064298965650098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7171fce545bc4560a2a8379c3dad1452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 6096188848458084049}
+  _enemyAnimator: {fileID: 7904801184297561779}
 --- !u!1 &1072327778234546
 GameObject:
   m_ObjectHideFlags: 0

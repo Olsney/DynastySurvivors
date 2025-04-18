@@ -31,14 +31,8 @@ namespace Code.Infrastructure.Factory
         public GameObject CreateSaveTriggerContainer() => 
             InstantiateRegistered(AssetPath.SaveTriggerContainerPath);
 
-        public GameObject CreateHero(GameObject at)
-        {
-            _heroGameObject = InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
-
-            OnHeroCreated?.Invoke();
-
-            return _heroGameObject;
-        }
+        public GameObject CreateHero(GameObject at) => 
+            InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
 
         public void CreateHud() => 
             InstantiateRegistered(AssetPath.HudPath);

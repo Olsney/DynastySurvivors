@@ -31,10 +31,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Combined Attack melee
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 1
+      firstFrame: 15
       lastFrame: 82
       wrapMode: 0
       orientationOffsetY: 0

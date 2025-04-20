@@ -25,7 +25,7 @@ namespace Code.Enemy
             if (_gameFactory.HeroGameObject != null)
                 IsHeroInitialized();
             else
-                _gameFactory.OnHeroCreated += InitializeHero;
+                _gameFactory.HeroCreated += InitializeHero;
         }
         
         private void Update()

@@ -10,7 +10,7 @@ namespace Code.Infrastructure.Factory
     {
         GameObject CreateHero(GameObject at);
         GameObject HeroGameObject { get; }
-        event Action OnHeroCreated;
+        event Action HeroCreated;
         void CreateHud();
         GameObject CreateCurtain();
         List<ISavedProgressReader> ProgressReaders { get; }

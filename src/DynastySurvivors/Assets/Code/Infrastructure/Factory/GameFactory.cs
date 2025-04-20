@@ -9,7 +9,7 @@ namespace Code.Infrastructure.Factory
 {
     public class GameFactory : IGameFactory
     {
-        public event Action OnHeroCreated;
+        public event Action HeroCreated;
         
         private readonly IAssetProvider _assets;
         private readonly IInstantiator _container;
@@ -35,7 +35,7 @@ namespace Code.Infrastructure.Factory
         {
             _heroGameObject = InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
 
-            OnHeroCreated?.Invoke();
+            HeroCreated?.Invoke();
 
             return _heroGameObject;
         }

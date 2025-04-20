@@ -59,6 +59,7 @@
     <Compile Include="Assets\Packages\DoubleL\Demo\DemoCameraController.cs" />
     <Compile Include="Assets\Code\Infrastructure\States\GameLoopState.cs" />
     <Compile Include="Assets\Code\Infrastructure\AssetManagement\IAssetProvider.cs" />
+    <Compile Include="Assets\Code\Enemy\EnemyMeleeAttack.cs" />
     <Compile Include="Assets\Code\Infrastructure\AssetManagement\AssetPath.cs" />
     <Compile Include="Assets\Code\Enemy\EnemyRotateToHero.cs" />
     <Compile Include="Assets\Code\Infrastructure\SceneLoader.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Code\Logic\SaveTrigger.cs" />
     <Compile Include="Assets\Code\Enemy\Aggro.cs" />
     <Compile Include="Assets\Code\Infrastructure\Factory\StateFactory.cs" />
+    <Compile Include="Assets\Code\Enemy\Follower.cs" />
     <Compile Include="Assets\Code\Infrastructure\GameRunner.cs" />
     <Compile Include="Assets\Code\Services\SaveLoad\ISaveLoadService.cs" />
     <Compile Include="Assets\Code\Services\Input\StandaloneInputService.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Assets\Code\Infrastructure\States\BootstrapState.cs" />
     <Compile Include="Assets\Code\Data\Vector3Data.cs" />
     <Compile Include="Assets\Code\Data\DataExtensions.cs" />
+    <Compile Include="Assets\Code\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Code\Logic\Curtain\LoadingCurtainProvider.cs" />
     <Compile Include="Assets\Code\Data\PlayerProgress.cs" />
     <Compile Include="Assets\Code\Infrastructure\AssetManagement\AssetProvider.cs" />

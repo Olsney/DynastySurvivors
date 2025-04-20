@@ -6,13 +6,13 @@ namespace Code.Logic
     [RequireComponent(typeof(Collider))]
     public class TriggerObserver : MonoBehaviour
     {
-        public event Action<Collider> TriggerEntered;
-        public event Action<Collider> TriggerExited;
+        public event Action<Collider> Entered;
+        public event Action<Collider> Exited;
 
         private void OnTriggerEnter(Collider other) => 
-            TriggerEntered?.Invoke(other);
+            Entered?.Invoke(other);
 
         private void OnTriggerExit(Collider other) => 
-            TriggerExited?.Invoke(other);
+            Exited?.Invoke(other);
     }
 }

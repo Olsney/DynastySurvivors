@@ -1,4 +1,5 @@
-﻿using Code.Infrastructure.Factory;
+﻿using System.Linq;
+using Code.Infrastructure.Factory;
 using Code.Logic;
 using UnityEngine;
 using Zenject;
@@ -53,6 +54,9 @@ namespace Code.Enemy
 
         public override void EnableAttack()
         {
+            _isAttackEnabled = true;
+            
+            
         }
 
         public override void DisableAttack()
@@ -84,7 +88,26 @@ namespace Code.Enemy
 
         private void OnAttack()
         {
+            if (IsHitted(out Collider hit))
+            {
+                float drawDuration = 2f;
+                
+                PhysicsDebugHelpers.DrawRaysFromPoint(GetAttackStartPosition(), _attackCleavage, Color.red, drawDuration );
+            }
+            
         }
+
+        private bool IsHitted(out Collider hit)
+        {
+            int hitsCount = Physics.OverlapSphereNonAlloc(GetAttackStartPosition(), _attackCleavage, _hitsBuffer, _heroLayerMask);
+
+            hit = _hitsBuffer.FirstOrDefault();
+
+            return hitsCount > 0;
+        }
+        
+        private Vector3 GetAttackStartPosition() =>
+            new Vector3(transform.position.x, transform.position.y + _attackOffsetY, transform.position.z) + _attackOffsetForward * transform.forward;
 
         private void OnAttackEnded()
         {

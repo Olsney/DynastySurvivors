@@ -5,14 +5,11 @@ using UnityEngine.Serialization;
 
 namespace Code.Enemy
 {
-    public class Aggro : MonoBehaviour
+    public class AggroZone : MonoBehaviour
     {
-        [SerializeField]
-        private TriggerObserver _triggerObserver;
-        [SerializeField]
-        private Follower _follower;
-        [SerializeField]
-        private float _delayBeforeStopAggro;
+        [SerializeField] private TriggerObserver _triggerObserver;
+        [SerializeField] private Follower _follower;
+        [SerializeField] private float _delayBeforeStopAggro;
 
         private Coroutine _stopAggro;
         private bool _hasAggroTarget;
@@ -21,11 +18,11 @@ namespace Code.Enemy
         {
             SetFollowHeroDisabled();
 
-            _triggerObserver.TriggerEntered += TriggerEntered;
-            _triggerObserver.TriggerExited += TriggerExited;
+            _triggerObserver.Entered += Entered;
+            _triggerObserver.Exited += Exited;
         }
 
-        private void TriggerEntered(Collider obj)
+        private void Entered(Collider obj)
         {
             if (_hasAggroTarget)
                 return;
@@ -36,7 +33,7 @@ namespace Code.Enemy
             SetFollowHeroEnabled();
         }
 
-        private void TriggerExited(Collider obj)
+        private void Exited(Collider obj)
         {
             if (!_hasAggroTarget)
                 return;
@@ -53,10 +50,10 @@ namespace Code.Enemy
             SetFollowHeroDisabled();
         }
 
-        private void SetFollowHeroEnabled() => 
+        private void SetFollowHeroEnabled() =>
             _follower.enabled = true;
 
-        private void SetFollowHeroDisabled() => 
+        private void SetFollowHeroDisabled() =>
             _follower.enabled = false;
 
         private void StopAggroCoroutine()

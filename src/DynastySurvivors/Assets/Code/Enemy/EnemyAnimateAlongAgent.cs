@@ -7,10 +7,8 @@ namespace Code.Enemy
     {
         private const float MinAnimatedVelocity = 0.1f;
 
-        [SerializeField]
-        private NavMeshAgent _agent;
-        [SerializeField]
-        private EnemyAnimator _enemyAnimator;
+        [SerializeField] private NavMeshAgent _agent;
+        [SerializeField] private EnemyAnimator _enemyAnimator;
 
         public void Update()
         {

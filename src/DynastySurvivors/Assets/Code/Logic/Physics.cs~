@@ -1,0 +1,7 @@
+﻿namespace Code.Logic
+{
+    public class Physics
+    {
+        
+    }
+}

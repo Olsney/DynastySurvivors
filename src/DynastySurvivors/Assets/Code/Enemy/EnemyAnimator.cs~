@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Code.Enemy
 {
-    public class EnemyAnimator : MonoBehaviour
+    public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
     {
         private static readonly int Die = Animator.StringToHash("Die");
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
         private static readonly int Speed = Animator.StringToHash("Speed");
-        private static readonly int Attack = Animator.StringToHash("Attack_1");
+        private static readonly int Attack = Animator.StringToHash("Attack01");
         private static readonly int Hit = Animator.StringToHash("Hit");
         
         private readonly int _idleStateHash = Animator.StringToHash("Idle");

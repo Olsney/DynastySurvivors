@@ -282,6 +282,9 @@ GameObject:
   - component: {fileID: 9181306661027826823}
   - component: {fileID: 6845193668131832341}
   - component: {fileID: 640092239959802985}
+  - component: {fileID: 1450503239088332649}
+  - component: {fileID: 4404823071695940292}
+  - component: {fileID: 5777646232455234005}
   m_Layer: 0
   m_Name: Chr_Skeleton_02
   m_TagString: Untagged
@@ -335,7 +338,12 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Root'\n\tTransform 'IndexFinger_02'\n\tTransform
+    'Elbow_R'\n\tTransform 'Finger_02'\n\tTransform 'Finger_03'\n\tTransform 'Ball_L'\n\tTransform
+    'Ball_R'\n\tTransform 'Clavicle_L'\n\tTransform 'Finger_01'\n\tTransform 'Neck'\n\tand
+    more ...\n\tFrom animation clip 'attack02'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -414,8 +422,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerObserver: {fileID: 4179525121394714193}
-  _enemyMove: {fileID: 9181306661027826823}
+  _follower: {fileID: 0}
   _delayBeforeStopAggro: 3
+--- !u!114 &1450503239088332649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064298965650098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329d84187d4545c7b767e11107a98d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldown: {fileID: 4404823071695940292}
+  _enemyAnimator: {fileID: 7904801184297561779}
+  _attackDamage: 50
+  _attackCooldown: 3
+  _attackOffsetY: 0.5
+  _attackOffsetForward: 0.5
+  _attackCleavage: 0.5
+--- !u!114 &4404823071695940292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064298965650098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3267c74c7d634c94904d077d0302724e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5777646232455234005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064298965650098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee802ee5cb4c4fd9825d1a38f0da4517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attack: {fileID: 1450503239088332649}
+  _triggerObserver: {fileID: 4275001398118462384}
 --- !u!1 &1072327778234546
 GameObject:
   m_ObjectHideFlags: 0
@@ -3276,7 +3329,7 @@ GameObject:
   - component: {fileID: 747188094527619779}
   - component: {fileID: 3295317909519007630}
   - component: {fileID: 4179525121394714193}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AggroZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3342,7 +3395,7 @@ GameObject:
   - component: {fileID: 4567728923660736508}
   - component: {fileID: 5002477102946819925}
   - component: {fileID: 4275001398118462384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

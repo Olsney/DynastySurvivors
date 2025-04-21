@@ -8,7 +8,7 @@ namespace Code.Enemy
 {
     public class EnemyMeleeAttack : EnemyAttack
     {
-        private const string HeroLayerMask = "Player";
+        private const string HeroLayerMask = "Hero";
 
         [SerializeField] private Cooldown _cooldown;
         [SerializeField] private EnemyAnimator _enemyAnimator;
@@ -52,16 +52,11 @@ namespace Code.Enemy
                 StartAttack();
         }
 
-        public override void EnableAttack()
-        {
+        public override void EnableAttack() => 
             _isAttackEnabled = true;
-            
-            
-        }
 
-        public override void DisableAttack()
-        {
-        }
+        public override void DisableAttack() => 
+            _isAttackEnabled = true;
 
         private void UpdateCooldown()
         {
@@ -80,22 +75,27 @@ namespace Code.Enemy
             _isAttacking = true;
         }
 
-        private bool IsAttackOnCooldown() =>
-            _attackCooldownTimer > 0f;
-
-        private void OnHeroCreated() =>
-            _heroTransform = _gameFactory.HeroGameObject.transform;
+        private void OnAttackEnded()
+        {
+            _cooldown.SetCooldown(_attackCooldown);
+            
+            _isAttacking = false;
+        }
 
         private void OnAttack()
         {
             if (IsHitted(out Collider hit))
             {
                 float drawDuration = 2f;
-                
-                PhysicsDebugHelpers.DrawRaysFromPoint(GetAttackStartPosition(), _attackCleavage, Color.red, drawDuration );
+                PhysicsDebugHelpers.DrawRaysFromPoint(GetAttackStartPosition(), _attackCleavage, Color.red, 1f);
             }
-            
         }
+
+        private bool IsAttackOnCooldown() =>
+            _attackCooldownTimer > 0f;
+
+        private void OnHeroCreated() =>
+            _heroTransform = _gameFactory.HeroGameObject.transform;
 
         private bool IsHitted(out Collider hit)
         {
@@ -105,13 +105,8 @@ namespace Code.Enemy
 
             return hitsCount > 0;
         }
-        
+
         private Vector3 GetAttackStartPosition() =>
             new Vector3(transform.position.x, transform.position.y + _attackOffsetY, transform.position.z) + _attackOffsetForward * transform.forward;
-
-        private void OnAttackEnded()
-        {
-            _cooldown.SetCooldown(_attackCooldown);
-        }
     }
 }

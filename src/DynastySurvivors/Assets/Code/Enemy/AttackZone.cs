@@ -17,14 +17,10 @@ namespace Code.Enemy
             _attack.DisableAttack();
         }
 
-        private void OnEntered(Collider obj)
-        {
+        private void OnEntered(Collider obj) => 
             _attack.EnableAttack();
-        }
 
-        private void OnExited(Collider obj)
-        {
+        private void OnExited(Collider obj) => 
             _attack.DisableAttack();
-        }
     }
 }

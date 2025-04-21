@@ -40,7 +40,7 @@ namespace Code.Infrastructure.Factory
             return _heroGameObject;
         }
 
-        public GameObject CreateHud() => 
+        public void CreateHud() => 
             InstantiateRegistered(AssetPath.HudPath);
 
         public void Cleanup()

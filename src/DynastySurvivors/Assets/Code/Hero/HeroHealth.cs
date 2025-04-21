@@ -1,4 +1,5 @@
-﻿using Code.Data;
+﻿using System;
+using Code.Data;
 using Code.Services.PersistentProgress;
 using UnityEngine;
 
@@ -9,10 +10,20 @@ namespace Code.Hero
         [SerializeField] private HeroAnimator _animator;
         private State _state;
 
+        public event Action HealthChanged;
+
         public float Current
         {
             get => _state.CurrentHp;
-            set => _state.CurrentHp = value;
+            set
+            {
+                if (_state.CurrentHp != value)
+                {
+                    _state.CurrentHp = value;
+
+                    HealthChanged?.Invoke();
+                }
+            }
         }
 
         public float Max
@@ -24,6 +35,8 @@ namespace Code.Hero
         public void LoadProgress(PlayerProgress progress)
         {
             _state = progress.HeroState;
+            
+            HealthChanged?.Invoke();
         }
 
         public void UpdateProgress(PlayerProgress progress)

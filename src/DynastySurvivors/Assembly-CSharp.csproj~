@@ -54,6 +54,7 @@
     <Compile Include="Assets\Code\Logic\TriggerObserver.cs" />
     <Compile Include="Assets\Code\Services\PersistentProgress\ISavedProgressReader.cs" />
     <Compile Include="Assets\Code\Enemy\EnemyAnimator.cs" />
+    <Compile Include="Assets\Code\Data\State.cs" />
     <Compile Include="Assets\Code\Logic\IAnimationStateReader.cs" />
     <Compile Include="Assets\Code\Enemy\AttackZone.cs" />
     <Compile Include="Assets\Code\Infrastructure\Factory\IGameFactory.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\Code\Hero\HeroAnimator.cs" />
     <Compile Include="Assets\Code\Infrastructure\States\LoadProgressState.cs" />
     <Compile Include="Assets\Code\Infrastructure\Factory\IStateFactory.cs" />
+    <Compile Include="Assets\Code\UI\HealthBar.cs" />
     <Compile Include="Assets\Code\Logic\AnimatorStateReporter.cs" />
     <Compile Include="Assets\Code\Infrastructure\States\LoadLevelState.cs" />
     <Compile Include="Assets\Code\Services\PersistentProgress\ISavedProgress.cs" />

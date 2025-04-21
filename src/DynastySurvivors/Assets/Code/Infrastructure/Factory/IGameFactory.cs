@@ -11,7 +11,7 @@ namespace Code.Infrastructure.Factory
         GameObject CreateHero(GameObject at);
         GameObject HeroGameObject { get; }
         event Action HeroCreated;
-        void CreateHud();
+        GameObject CreateHud();
         GameObject CreateCurtain();
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }

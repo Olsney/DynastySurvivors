@@ -59,9 +59,7 @@ namespace Code.Infrastructure.States
         private void InitGameWorld()
         {
             _gameFactory.CreateSaveTriggerContainer();
-            
             GameObject hero = _gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPoint));
-            
             InitHud(hero);
             CameraFollow(hero);
         }

@@ -14,4 +14,13 @@ namespace Code.Data
             HeroState = new State();
         }
     }
+
+    [Serializable]
+    public class State
+    {
+        public float CurrentHp;
+        public float MaxHp;
+
+        public float ResetHp => CurrentHp = MaxHp;
+    }
 }

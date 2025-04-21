@@ -42,7 +42,7 @@ namespace Code.Infrastructure.States
         {
             PlayerProgress playerProgress = new PlayerProgress(initialLevel: InitialLevel);
 
-            playerProgress.HeroState.MaxHp = 50f;
+            playerProgress.HeroState.MaxHp = 50;
             playerProgress.HeroState.ResetHp();
             
             return playerProgress;

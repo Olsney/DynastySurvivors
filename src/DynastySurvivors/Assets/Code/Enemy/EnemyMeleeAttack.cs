@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Code.Hero;
 using Code.Infrastructure.Factory;
 using Code.Logic;
 using UnityEngine;
@@ -88,6 +89,8 @@ namespace Code.Enemy
             {
                 float drawDuration = 2f;
                 PhysicsDebugHelpers.DrawRaysFromPoint(GetAttackStartPosition(), _attackCleavage, Color.red, 1f);
+
+                hit.transform.GetComponent<HeroHealth>().TakeDamage(_attackDamage);
             }
         }
 

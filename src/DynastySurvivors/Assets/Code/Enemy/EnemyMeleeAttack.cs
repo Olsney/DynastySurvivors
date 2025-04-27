@@ -87,10 +87,16 @@ namespace Code.Enemy
         {
             if (IsHitted(out Collider hit))
             {
-                float drawDuration = 2f;
                 PhysicsDebugHelpers.DrawRaysFromPoint(GetAttackStartPosition(), _attackCleavage, Color.red, 1f);
+                HeroHealth heroHealth = hit.transform.GetComponent<HeroHealth>();
 
-                hit.transform.GetComponent<HeroHealth>().TakeDamage(_attackDamage);
+                if (hit == null)
+                    return;
+                
+                if (heroHealth == null)
+                    return;
+                
+                heroHealth.TakeDamage(_attackDamage);
             }
         }
 
@@ -103,13 +109,52 @@ namespace Code.Enemy
         private bool IsHitted(out Collider hit)
         {
             int hitsCount = Physics.OverlapSphereNonAlloc(GetAttackStartPosition(), _attackCleavage, _hitsBuffer, _heroLayerMask);
+            hit = null;
 
-            hit = _hitsBuffer.FirstOrDefault();
+            // hit = _hitsBuffer.FirstOrDefault();
+            //
+            // return hitsCount > 0;
+            
+            if (hitsCount > 0)
+            {
+                for (int i = 0; i < hitsCount; i++)
+                {
+                    if (_hitsBuffer[i] != null)
+                    {
+                        hit = _hitsBuffer[i];
+                        
+                        return true;
+                    }
+                }
+            }
 
-            return hitsCount > 0;
+            return false;
         }
 
-        private Vector3 GetAttackStartPosition() =>
-            new Vector3(transform.position.x, transform.position.y + _attackOffsetY, transform.position.z) + _attackOffsetForward * transform.forward;
+        private Vector3 GetAttackStartPosition()
+        {
+            // return new Vector3(transform.position.x, transform.position.y + _attackOffsetY, transform.position.z) +
+            //        _attackOffsetForward * transform.forward;
+            
+            // Vector3 directionToHero = (_heroTransform.position - transform.position).normalized;
+            // Vector3 attackPoint = transform.position + directionToHero * _attackOffsetForward;
+            // attackPoint.y += _attackOffsetY;
+            //
+            // return attackPoint;
+            
+            Vector3 directionToHero = (_heroTransform.position - transform.position).normalized;
+            float distanceToHero = Vector3.Distance(transform.position, _heroTransform.position);
+
+            // Выбираем минимальное: либо заданное смещение, либо реальное расстояние до героя минус небольшая дельта
+            float forwardOffset = Mathf.Min(_attackOffsetForward, distanceToHero - 0.1f); // 0.1f — чтобы не попасть точно в точку врага
+
+            // Если слишком близко (меньше 0.1f) — оставляем без смещения
+            forwardOffset = Mathf.Max(forwardOffset, 0f);
+
+            Vector3 attackPoint = transform.position + directionToHero * forwardOffset;
+            attackPoint.y += _attackOffsetY;
+    
+            return attackPoint;
+        }
     }
 }

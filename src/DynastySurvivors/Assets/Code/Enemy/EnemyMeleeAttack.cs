@@ -57,7 +57,7 @@ namespace Code.Enemy
             _isAttackEnabled = true;
 
         public override void DisableAttack() => 
-            _isAttackEnabled = true;
+            _isAttackEnabled = false;
 
         private void UpdateCooldown()
         {

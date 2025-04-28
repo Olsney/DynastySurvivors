@@ -7,7 +7,11 @@ namespace Code.Hero
 {
     public class HeroHealth : MonoBehaviour, ISavedProgress
     {
-        [SerializeField] private HeroAnimator _animator;
+        [SerializeField] 
+        private HeroAnimator _animator;
+        
+        [SerializeField]
+        private GameObject _takeDamageEffectPrefab;
         private State _state;
 
         public event Action HealthChanged;
@@ -47,11 +51,16 @@ namespace Code.Hero
 
         public void TakeDamage(float damage)
         {
+            float effectVisualDiration = 3f;
+            
             if (Current <= 0)
                 return;
 
             Current -= damage;
             _animator.PlayHit();
+            
+            GameObject damageEffect = Instantiate(_takeDamageEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(damageEffect, effectVisualDiration);
         }
     }
 }

@@ -1213,6 +1213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8723237862922046338}
+  _takeDamageEffectPrefab: {fileID: 1489431029902184, guid: a82f09207aa97a244be5697e32323eba, type: 3}
 --- !u!114 &-6827540669886519875
 MonoBehaviour:
   m_ObjectHideFlags: 0

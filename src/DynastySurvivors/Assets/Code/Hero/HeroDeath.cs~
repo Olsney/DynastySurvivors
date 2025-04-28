@@ -1,0 +1,44 @@
+﻿using System;
+using UnityEngine;
+using UnityEngine.Serialization;
+
+namespace Code.Hero
+{
+    public class HeroDeath : MonoBehaviour
+    {
+        [SerializeField]
+        private HeroHealth _health;
+        [SerializeField]
+        private HeroMove _move;
+        [SerializeField]
+        private HeroAnimator _animator;
+        [SerializeField]
+        private GameObject _deathEffect;
+
+        private bool _isDead;
+
+        private void Start() => 
+            _health.HealthChanged += OnHealthChanged;
+
+        private void OnDestroy() => 
+            _health.HealthChanged -= OnHealthChanged;
+
+        private void OnHealthChanged()
+        {
+            if (_isDead)
+                return;
+            
+            if (_health.Current <= 0)
+                Die();
+        }
+
+        private void Die()
+        {
+            _move.enabled = false;
+            _animator.PlayDeath();
+            Instantiate(_deathEffect, transform.position, Quaternion.identity);
+
+            _isDead = true;
+        }
+    }
+}

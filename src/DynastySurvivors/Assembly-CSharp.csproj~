@@ -107,6 +107,7 @@
     <Compile Include="Assets\Code\Logic\Curtain\LoadingCurtainProvider.cs" />
     <Compile Include="Assets\Code\Data\PlayerProgress.cs" />
     <Compile Include="Assets\Code\Infrastructure\AssetManagement\AssetProvider.cs" />
+    <Compile Include="Assets\Code\UI\ActorUI.cs" />
     <Compile Include="Assets\Code\Hero\HeroMove.cs" />
     <Compile Include="Assets\Code\Infrastructure\Installers\LocationInstaller.cs" />
     <Compile Include="Assets\Code\Infrastructure\Services\AllServices.cs" />

@@ -1069,6 +1069,7 @@ GameObject:
   - component: {fileID: 8723237862922046338}
   - component: {fileID: 6849156259191077909}
   - component: {fileID: 2456738757525674475}
+  - component: {fileID: -6827540669886519875}
   m_Layer: 3
   m_Name: Chr_Hero_Female_01
   m_TagString: Untagged
@@ -1212,6 +1213,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8723237862922046338}
+--- !u!114 &-6827540669886519875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3349932211548729735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b531a23d8447489fc57cb24b82cb63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 2456738757525674475}
+  _move: {fileID: 7780317262682730589}
+  _animator: {fileID: 8723237862922046338}
+  _deathEffectPrefab: {fileID: 1277154925287174, guid: 994b8ec5b2aad4542abb2fd8fb7b9979, type: 3}
+  _deathEffectSpawnPoint: {fileID: 3510542137595417214}
 --- !u!1 &3379887114862934720
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ namespace Code.Enemy
         [SerializeField] private EnemyHealth _health;
         [SerializeField] private EnemyAnimator _animator;
         [SerializeField] private GameObject _deathFx;
+        [SerializeField] private EnemyMoveToHero _enemyMove;
+        [SerializeField] private EnemyAttack _enemyAttack;
         
         private void Start() => 
             _health.Changed += OnChanged;
@@ -28,7 +30,8 @@ namespace Code.Enemy
         private void Die()
         {
             _health.Changed -= OnChanged;
-
+            _enemyMove.enabled = false;
+            _enemyAttack.enabled = false;
             _animator.PlayDeath();
 
             SpawnDeathFx();

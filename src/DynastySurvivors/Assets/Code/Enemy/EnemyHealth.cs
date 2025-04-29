@@ -18,6 +18,9 @@ namespace Code.Enemy
         
         [SerializeField]
         private GameObject _takeDamageEffectPrefab;
+        [SerializeField] 
+        private Transform _takeDamageEffectSpawnPoint;
+
 
         public float Current => _current;
         public float Max => _max;
@@ -26,6 +29,7 @@ namespace Code.Enemy
         public void TakeDamage(float damage)
         {
             float effectVisualDiration = 3f;
+            Debug.Log("Враг получает урон в EnemyHealth");
             
             if (damage < 0)
                 damage = 0;
@@ -35,7 +39,7 @@ namespace Code.Enemy
             
             Changed?.Invoke();
             
-            GameObject damageEffect = Instantiate(_takeDamageEffectPrefab, transform.position, Quaternion.identity);
+            GameObject damageEffect = Instantiate(_takeDamageEffectPrefab, _takeDamageEffectSpawnPoint.position, Quaternion.identity);
             Destroy(damageEffect, effectVisualDiration);
         }
     }

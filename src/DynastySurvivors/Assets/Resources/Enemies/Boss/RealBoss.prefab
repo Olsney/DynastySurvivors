@@ -1344,8 +1344,8 @@ Transform:
   - {fileID: 4048281603197036}
   - {fileID: 4926169684207350}
   - {fileID: 7990771106633973883}
-  - {fileID: 1165597334201177663}
   - {fileID: 868457067587012744}
+  - {fileID: 1165597334201177663}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95779955075033070
@@ -1496,7 +1496,8 @@ MonoBehaviour:
   _enemyAnimator: {fileID: 786104119069963310}
   _current: 30
   _max: 30
-  _takeDamageEffectPrefab: {fileID: 1159970587636746, guid: 3eb24261e401a5d489b38854510f231e, type: 3}
+  _takeDamageEffectPrefab: {fileID: 8771972552311404799, guid: 04eff93b654fb924cabd4c00ea1c01a9, type: 3}
+  _takeDamageEffectSpawnPoint: {fileID: 4871071333968326}
 --- !u!114 &3478071219283561817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1511,7 +1512,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 6418377138801429946}
   _animator: {fileID: 786104119069963310}
-  _deathFx: {fileID: 5642766282230003982, guid: d742edecb5cbf5240b6f63530e677b60, type: 3}
+  _deathFx: {fileID: 1277154925287174, guid: b19ca7e1fe385dd4ea9f79abe16a15f5, type: 3}
+  _enemyMove: {fileID: 3560086263261722142}
+  _enemyAttack: {fileID: 7401313518791746336}
 --- !u!114 &5698710074408488623
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,8 +43,9 @@ namespace Code.Enemy
         private IEnumerator DestroyAfterDelay()
         {
             float delayBeforeDestroy = 3f;
+            WaitForSeconds wait = new WaitForSeconds(delayBeforeDestroy);
             
-            yield return new WaitForSeconds(delayBeforeDestroy);
+            yield return wait;
             
             Destroy(gameObject);
         }

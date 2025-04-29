@@ -35,7 +35,7 @@ namespace Code.Hero
 
         private void Die()
         {
-            float effectVisualDiration = 3f;
+            float effectVisualDuration = 3f;
             
             _move.enabled = false;
             _attack.enabled = false;
@@ -44,7 +44,7 @@ namespace Code.Hero
             
             _isDead = true;
             
-            Destroy(deathEffect, effectVisualDiration);
+            Destroy(deathEffect, effectVisualDuration);
         }
     }
 }

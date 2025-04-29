@@ -70,7 +70,7 @@ namespace Code.Infrastructure.States
         {
             GameObject hud = _gameFactory.CreateHud();
             
-            hud.GetComponentInChildren<ActorUI>().Construct(hero.GetComponent<HeroHealth>());
+            hud.GetComponentInChildren<ActorUI>().Construct(hero.GetComponent<IHealth>());
         }
 
         private void InformProgressReaders()

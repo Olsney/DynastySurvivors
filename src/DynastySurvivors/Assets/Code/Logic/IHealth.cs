@@ -4,7 +4,7 @@ namespace Code.Logic
 {
     public interface IHealth
     {
-        event Action HealthChanged;
+        event Action Changed;
         float Current { get; }
         float Max { get; }
     }

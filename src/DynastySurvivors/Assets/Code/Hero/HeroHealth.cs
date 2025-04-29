@@ -21,7 +21,7 @@ namespace Code.Hero
         public float Current => _current;
         public float Max => _max;
 
-        public event Action HealthChanged;
+        public event Action Changed;
         
         
 
@@ -49,7 +49,7 @@ namespace Code.Hero
         {
             _healthData = progress.HeroHealth;
             
-            HealthChanged?.Invoke();
+            Changed?.Invoke();
         }
 
         public void UpdateProgress(PlayerProgress progress)
@@ -69,7 +69,7 @@ namespace Code.Hero
 
             _current -= damage;
             _animator.PlayHit();
-            HealthChanged?.Invoke();
+            Changed?.Invoke();
             
             GameObject damageEffect = Instantiate(_takeDamageEffectPrefab, transform.position, Quaternion.identity);
             Destroy(damageEffect, effectVisualDiration);

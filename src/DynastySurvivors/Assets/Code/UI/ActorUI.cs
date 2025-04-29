@@ -14,11 +14,11 @@ namespace Code.UI
         {
             _heroHealth = health;
 
-            _heroHealth.HealthChanged += OnHealthChanged;
+            _heroHealth.Changed += OnHealthChanged;
         }
 
         private void OnDestroy() => 
-            _heroHealth.HealthChanged -= OnHealthChanged;
+            _heroHealth.Changed -= OnHealthChanged;
 
         private void OnHealthChanged()
         {

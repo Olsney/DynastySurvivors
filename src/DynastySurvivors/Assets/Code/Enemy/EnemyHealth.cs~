@@ -7,7 +7,7 @@ namespace Code.Enemy
 {
     public class EnemyHealth : MonoBehaviour, IHealth, IDamageable
     {
-        public event Action Changed;
+        public event Action HealthChanged;
 
         [SerializeField]
         private EnemyAnimator _enemyAnimator;
@@ -28,7 +28,7 @@ namespace Code.Enemy
             _current -= damage;
             _enemyAnimator.PlayHit();
             
-            Changed?.Invoke();
+            HealthChanged?.Invoke();
         }
     }
 }

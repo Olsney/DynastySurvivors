@@ -22,10 +22,10 @@ namespace Code.Hero
         private bool _isDead;
 
         private void Start() => 
-            _health.HealthChanged += OnHealthChanged;
+            _health.Changed += OnHealthChanged;
 
         private void OnDestroy() => 
-            _health.HealthChanged -= OnHealthChanged;
+            _health.Changed -= OnHealthChanged;
 
         private void OnHealthChanged()
         {

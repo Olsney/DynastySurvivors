@@ -10,7 +10,7 @@ namespace Code.Hero
     [SerializeField] private Animator _animator;
 
     private static readonly int MoveHash = Animator.StringToHash("Walking");
-    private static readonly int AttackHash = Animator.StringToHash("AttackNormal");
+    private static readonly int AttackHash = Animator.StringToHash("Attack03");
     private static readonly int HitHash = Animator.StringToHash("Hit");
     private static readonly int DieHash = Animator.StringToHash("Die");
 

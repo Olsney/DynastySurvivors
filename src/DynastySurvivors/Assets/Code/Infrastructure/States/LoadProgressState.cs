@@ -43,7 +43,7 @@ namespace Code.Infrastructure.States
             PlayerProgress playerProgress = new PlayerProgress(initialLevel: InitialLevel);
 
             playerProgress.HeroHealth.MaxHealth = 50f;
-            playerProgress.HeroStats.Damage = 10f;
+            playerProgress.HeroStats.Damage = 15f;
             playerProgress.HeroStats.DamageRadius = 0.5f;
             playerProgress.HeroHealth.ResetHp();
             

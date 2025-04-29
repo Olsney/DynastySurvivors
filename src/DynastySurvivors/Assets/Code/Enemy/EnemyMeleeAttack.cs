@@ -7,6 +7,7 @@ using Zenject;
 
 namespace Code.Enemy
 {
+    [RequireComponent(typeof(EnemyAnimator))]
     public class EnemyMeleeAttack : EnemyAttack
     {
         private const string HeroLayerMask = "Hero";
@@ -53,10 +54,10 @@ namespace Code.Enemy
                 StartAttack();
         }
 
-        public override void EnableAttack() => 
+        public override void EnableAttack() =>
             _isAttackEnabled = true;
 
-        public override void DisableAttack() => 
+        public override void DisableAttack() =>
             _isAttackEnabled = false;
 
         private void UpdateCooldown()
@@ -79,25 +80,28 @@ namespace Code.Enemy
         private void OnAttackEnded()
         {
             _cooldown.SetCooldown(_attackCooldown);
-            
+
             _isAttacking = false;
         }
 
         private void OnAttack()
         {
-            if (IsHitted(out Collider hit))
-            {
-                PhysicsDebugHelpers.DrawRaysFromPoint(GetAttackStartPosition(), _attackCleavage, Color.red, 1f);
-                HeroHealth heroHealth = hit.transform.GetComponent<HeroHealth>();
+            if (IsHitted(out Collider hit) == false)
+                return;
+            //
+            // if (IsHitted(out Collider hit))
+            // {
+            PhysicsDebugHelpers.DrawRaysFromPoint(GetAttackStartPosition(), _attackCleavage, Color.red, 1f);
+            IDamageable heroHealth = hit.transform.GetComponent<IDamageable>();
 
-                if (hit == null)
-                    return;
-                
-                if (heroHealth == null)
-                    return;
-                
-                heroHealth.TakeDamage(_attackDamage);
-            }
+            if (hit == null)
+                return;
+
+            if (heroHealth == null)
+                return;
+
+            heroHealth.TakeDamage(_attackDamage);
+            // }
         }
 
         private bool IsAttackOnCooldown() =>
@@ -108,13 +112,14 @@ namespace Code.Enemy
 
         private bool IsHitted(out Collider hit)
         {
-            int hitsCount = Physics.OverlapSphereNonAlloc(GetAttackStartPosition(), _attackCleavage, _hitsBuffer, _heroLayerMask);
+            int hitsCount = Physics.OverlapSphereNonAlloc(GetAttackStartPosition(), _attackCleavage, _hitsBuffer,
+                _heroLayerMask);
             hit = null;
 
             // hit = _hitsBuffer.FirstOrDefault();
             //
             // return hitsCount > 0;
-            
+
             if (hitsCount > 0)
             {
                 for (int i = 0; i < hitsCount; i++)
@@ -122,7 +127,7 @@ namespace Code.Enemy
                     if (_hitsBuffer[i] != null)
                     {
                         hit = _hitsBuffer[i];
-                        
+
                         return true;
                     }
                 }
@@ -135,25 +140,26 @@ namespace Code.Enemy
         {
             // return new Vector3(transform.position.x, transform.position.y + _attackOffsetY, transform.position.z) +
             //        _attackOffsetForward * transform.forward;
-            
+
             // Vector3 directionToHero = (_heroTransform.position - transform.position).normalized;
             // Vector3 attackPoint = transform.position + directionToHero * _attackOffsetForward;
             // attackPoint.y += _attackOffsetY;
             //
             // return attackPoint;
-            
+
             Vector3 directionToHero = (_heroTransform.position - transform.position).normalized;
             float distanceToHero = Vector3.Distance(transform.position, _heroTransform.position);
 
             // Выбираем минимальное: либо заданное смещение, либо реальное расстояние до героя минус небольшая дельта
-            float forwardOffset = Mathf.Min(_attackOffsetForward, distanceToHero - 0.1f); // 0.1f — чтобы не попасть точно в точку врага
+            float forwardOffset =
+                Mathf.Min(_attackOffsetForward, distanceToHero - 0.1f); // 0.1f — чтобы не попасть точно в точку врага
 
             // Если слишком близко (меньше 0.1f) — оставляем без смещения
             forwardOffset = Mathf.Max(forwardOffset, 0f);
 
             Vector3 attackPoint = transform.position + directionToHero * forwardOffset;
             attackPoint.y += _attackOffsetY;
-    
+
             return attackPoint;
         }
     }

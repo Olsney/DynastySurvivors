@@ -1,63 +1,75 @@
 ﻿using System;
 using Code.Data;
+using Code.Logic;
 using Code.Services.PersistentProgress;
 using UnityEngine;
 
 namespace Code.Hero
 {
-    public class HeroHealth : MonoBehaviour, ISavedProgress
+    public class HeroHealth : MonoBehaviour, ISavedProgress, IHealth, IDamageable
     {
         [SerializeField] 
         private HeroAnimator _animator;
         
         [SerializeField]
         private GameObject _takeDamageEffectPrefab;
-        private State _state;
+        private HealthData _healthData;
+        
+        private float _current;
+        private float _max;
+
+        public float Current => _current;
+        public float Max => _max;
 
         public event Action HealthChanged;
+        
+        
 
-        public float Current
-        {
-            get => _state.CurrentHp;
-            set
-            {
-                if (_state.CurrentHp != value)
-                {
-                    _state.CurrentHp = value;
-
-                    HealthChanged?.Invoke();
-                }
-            }
-        }
-
-        public float Max
-        {
-            get => _state.MaxHp;
-            set => _state.MaxHp = value;
-        }
+        // public float Current
+        // {
+        //     get => _healthData.CurrentHealth;
+        //     set
+        //     {
+        //         if (_healthData.CurrentHealth != value)
+        //         {
+        //             _healthData.CurrentHealth = value;
+        //
+        //             HealthChanged?.Invoke();
+        //         }
+        //     }
+        // }
+        //
+        // public float Max
+        // {
+        //     get => _healthData.MaxHealth;
+        //     set => _healthData.MaxHealth = value;
+        // }
 
         public void LoadProgress(PlayerProgress progress)
         {
-            _state = progress.HeroState;
+            _healthData = progress.HeroHealth;
             
             HealthChanged?.Invoke();
         }
 
         public void UpdateProgress(PlayerProgress progress)
         {
-            progress.HeroState.CurrentHp = Current;
-            progress.HeroState.MaxHp = Max;
+            // progress.HeroHealth.CurrentHealth = Current;
+            // progress.HeroHealth.MaxHealth = Max;
+            progress.HeroHealth.CurrentHealth = _current;
+            progress.HeroHealth.MaxHealth = _max;
         }
 
         public void TakeDamage(float damage)
         {
             float effectVisualDiration = 3f;
             
-            if (Current <= 0)
+            if (_current <= 0)
                 return;
 
-            Current -= damage;
+            _current -= damage;
             _animator.PlayHit();
+            HealthChanged?.Invoke();
             
             GameObject damageEffect = Instantiate(_takeDamageEffectPrefab, transform.position, Quaternion.identity);
             Destroy(damageEffect, effectVisualDiration);

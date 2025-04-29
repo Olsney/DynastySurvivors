@@ -11,6 +11,8 @@ namespace Code.Hero
         [SerializeField]
         private HeroMove _move;
         [SerializeField]
+        private HeroAttack _attack;
+        [SerializeField]
         private HeroAnimator _animator;
         [SerializeField]
         private GameObject _deathEffectPrefab;
@@ -36,8 +38,10 @@ namespace Code.Hero
             float effectVisualDiration = 3f;
             
             _move.enabled = false;
+            _attack.enabled = false;
             _animator.PlayDeath();
             GameObject deathEffect = Instantiate(_deathEffectPrefab, _deathEffectSpawnPoint.position, Quaternion.identity);
+            
             _isDead = true;
             
             Destroy(deathEffect, effectVisualDiration);

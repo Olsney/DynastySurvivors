@@ -10,11 +10,10 @@ namespace Code.Enemy
     {
         [SerializeField] private TriggerObserver _attackZone;
         [SerializeField] private float _attackDamage = 1f;
-        [SerializeField] private float _attackCooldown = 1f;
+        [SerializeField] private float _attackCooldown = 0.5f;
         [SerializeField] private Cooldown _cooldown;
 
         private IGameFactory _gameFactory;
-        private Transform _heroTransform;
         private IDamageable _target;
         private bool _isAttackEnabled;
 
@@ -26,19 +25,12 @@ namespace Code.Enemy
 
         private void Awake()
         {
-            if (_gameFactory.HeroGameObject != null)
-                _heroTransform = _gameFactory.HeroGameObject.transform;
-            else
-                _gameFactory.HeroCreated += OnHeroCreated;
-
             _attackZone.Entered += OnZoneEntered;
             _attackZone.Exited += OnZoneExited;
         }
 
         private void OnDestroy()
         {
-            _gameFactory.HeroCreated -= OnHeroCreated;
-
             _attackZone.Entered -= OnZoneEntered;
             _attackZone.Exited -= OnZoneExited;
         }
@@ -54,10 +46,8 @@ namespace Code.Enemy
 
         private void Update()
         {
-            if (CanAttack())
-            {
+            if (CanAttack()) 
                 Attack();
-            }
         }
 
         private void Attack()
@@ -68,8 +58,6 @@ namespace Code.Enemy
 
         private void OnZoneEntered(Collider other)
         {
-            Debug.Log("OnZoneEntered in EnemyAreaPassiveAttack");
-
             if (_cooldown.IsOnCooldown())
                 return;
             
@@ -79,23 +67,13 @@ namespace Code.Enemy
 
         private void OnZoneExited(Collider other)
         {
-            Debug.Log("Hero Exited in EnemyAreaPassiveAttack");
-
             _isAttackEnabled = false;
 
             if (other.TryGetComponent<IDamageable>(out IDamageable damageable) && damageable == _target)
                 _target = null;
         }
 
-        private bool CanAttack()
-        {
-            Debug.Log($"{_isAttackEnabled && _target != null && !_cooldown.IsOnCooldown()}");
-            return _isAttackEnabled && _target != null && !_cooldown.IsOnCooldown();
-        }
-
-        private void OnHeroCreated()
-        {
-            _heroTransform = _gameFactory.HeroGameObject.transform;
-        }
+        private bool CanAttack() => 
+            _isAttackEnabled && _target != null && !_cooldown.IsOnCooldown();
     }
 }

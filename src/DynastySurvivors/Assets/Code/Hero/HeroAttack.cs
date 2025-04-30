@@ -44,40 +44,16 @@ namespace Code.Hero
 
         public void LoadProgress(PlayerProgress progress) =>
             _stats = progress.HeroStats;
-
-        // public void OnAttack()
-        // {
-        //     Debug.Log($"Radius: {_stats.DamageRadius}");
-        //     Debug.Log("Попал в ОнАттак");
-        //
-        //     int hitCount = Hit();
-        //     Debug.Log($"HitCount: {hitCount}");
-        //
-        //     PhysicsDebugHelpers.DrawRaysFromPoint(GetStartPoint(), _attackRadius, Color.yellow, 1f);
-        //
-        //     for (int i = 0; i < Hit(); i++)
-        //     {
-        //         Debug.Log($"{_stats.Damage} - урон нанесся по врагу");
-        //         PhysicsDebugHelpers.DrawRaysFromPoint(GetStartPoint(), _attackRadius, Color.red, 1f);
-        //         // _hitsBuffer[i].transform.parent.GetComponent<IDamageable>().TakeDamage(_stats.Damage);
-        //         _hitsBuffer[i].GetComponentInParent<IDamageable>()?.TakeDamage(_stats.Damage);
-        //     }
-        // }
         
         public void OnAttack()
         {
-            Debug.Log($"Radius: {_stats.DamageRadius}");
-            Debug.Log("Попал в ОнАттак");
-
             Vector3 attackCenter = GetStartPoint();
             int hitCount = Physics.OverlapSphereNonAlloc(
                 attackCenter,
                 _stats.DamageRadius,
                 _hitsBuffer,
                 _hittableLayerMask);
-
-            Debug.Log($"HitCount (до фильтрации по углу): {hitCount}");
-
+            
             for (int i = 0; i < hitCount; i++)
             {
                 Collider hit = _hitsBuffer[i];
@@ -117,11 +93,8 @@ namespace Code.Hero
 
         private Vector3 GetStartPoint()
         {
-            // return new Vector3(transform.position.x, _characterController.center.y / 2f, transform.position.z) +
-            //        transform.forward;
-            
             Vector3 center = _characterController.bounds.center;
-            return center + transform.forward * 0.5f; // половина метра вперёд от центра героя
+            return center + transform.forward * 0.5f;
         }
 
         private void OnDrawGizmos()

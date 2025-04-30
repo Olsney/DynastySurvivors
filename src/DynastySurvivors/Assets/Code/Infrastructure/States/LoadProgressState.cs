@@ -44,7 +44,7 @@ namespace Code.Infrastructure.States
 
             playerProgress.HeroHealth.MaxHealth = 50f;
             playerProgress.HeroStats.Damage = 15f;
-            playerProgress.HeroStats.DamageRadius = 1f;
+            playerProgress.HeroStats.DamageRadius = 1.5f;
             playerProgress.HeroHealth.ResetHp();
             
             return playerProgress;

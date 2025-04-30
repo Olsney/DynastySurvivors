@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Code.Hero;
 using Code.Infrastructure.Factory;
 using Code.Logic;
@@ -44,6 +45,11 @@ namespace Code.Enemy
                 _heroTransform = heroGameObject.transform;
             else
                 _gameFactory.HeroCreated += OnHeroCreated;
+        }
+
+        private void OnDestroy()
+        {
+            _gameFactory.HeroCreated -= OnHeroCreated;
         }
 
         private void Update()

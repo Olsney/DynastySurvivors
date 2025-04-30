@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 1450503239088332649}
   - component: {fileID: 4404823071695940292}
   - component: {fileID: 5777646232455234005}
+  - component: {fileID: 6038218408897385941}
   m_Layer: 0
   m_Name: Chr_Skeleton_02
   m_TagString: Untagged
@@ -431,7 +432,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064298965650098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 329d84187d4545c7b767e11107a98d21, type: 3}
   m_Name: 
@@ -467,8 +468,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee802ee5cb4c4fd9825d1a38f0da4517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attack: {fileID: 1450503239088332649}
+  _attack: {fileID: 6038218408897385941}
   _triggerObserver: {fileID: 4275001398118462384}
+--- !u!114 &6038218408897385941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064298965650098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff0d64684ec479aacd48288a594823e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackZone: {fileID: 4275001398118462384}
+  _attackDamage: 1
+  _attackCooldown: 1
+  _cooldown: {fileID: 4404823071695940292}
 --- !u!1 &1072327778234546
 GameObject:
   m_ObjectHideFlags: 0

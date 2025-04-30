@@ -1,5 +1,4 @@
-﻿using System;
-using Code.Infrastructure.Factory;
+﻿using Code.Infrastructure.Factory;
 using UnityEngine;
 using Zenject;
 

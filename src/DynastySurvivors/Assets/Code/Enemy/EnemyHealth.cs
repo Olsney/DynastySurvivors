@@ -1,7 +1,6 @@
 ﻿using System;
 using Code.Logic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Code.Enemy
 {
@@ -29,7 +28,6 @@ namespace Code.Enemy
         public void TakeDamage(float damage)
         {
             float effectVisualDiration = 3f;
-            Debug.Log("Враг получает урон в EnemyHealth");
             
             if (damage < 0)
                 damage = 0;

@@ -1,5 +1,4 @@
-﻿using System;
-using Code.Data;
+﻿using Code.Data;
 using Code.Logic;
 using Code.Services.Input;
 using Code.Services.PersistentProgress;
@@ -52,12 +51,7 @@ namespace Code.Hero
         
         public void OnAttack()
         {
-            Vector3 attackCenter = GetStartPoint();
-            int hitCount = Physics.OverlapSphereNonAlloc(
-                attackCenter,
-                _stats.DamageRadius,
-                _hitsBuffer,
-                _hittableLayerMask);
+            int hitCount = GetHitCount();
             
             for (int i = 0; i < hitCount; i++)
             {
@@ -80,7 +74,6 @@ namespace Code.Hero
                     if (damageable != null)
                     {
                         damageable.TakeDamage(_stats.Damage);
-                        Debug.Log($"{_stats.Damage} - урон нанесён по {hit.name}");
                     }
                 }
                 else
@@ -89,12 +82,11 @@ namespace Code.Hero
                 }
             }
 
-            PhysicsDebugHelpers.DrawRaysFromPoint(attackCenter, _stats.DamageRadius, Color.red, 1f);
+            PhysicsDebugHelpers.DrawRaysFromPoint(GetStartPoint(), _stats.DamageRadius, Color.red, 1f);
         }
 
-        private int Hit() =>
-            Physics.OverlapSphereNonAlloc(GetStartPoint() + transform.forward, _stats.DamageRadius, _hitsBuffer,
-                _hittableLayerMask);
+        private int GetHitCount() =>
+            Physics.OverlapSphereNonAlloc(GetStartPoint(), _stats.DamageRadius, _hitsBuffer, _hittableLayerMask);
 
         private Vector3 GetStartPoint()
         {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using Code.Hero;
-using Code.Infrastructure.Factory;
+﻿using Code.Infrastructure.Factory;
 using Code.Logic;
 using UnityEngine;
 using Zenject;
@@ -94,9 +91,7 @@ namespace Code.Enemy
         {
             if (IsHitted(out Collider hit) == false)
                 return;
-            //
-            // if (IsHitted(out Collider hit))
-            // {
+
             PhysicsDebugHelpers.DrawRaysFromPoint(GetAttackStartPosition(), _attackCleavage, Color.red, 1f);
             IDamageable heroHealth = hit.transform.GetComponent<IDamageable>();
 
@@ -107,7 +102,6 @@ namespace Code.Enemy
                 return;
 
             heroHealth.TakeDamage(_attackDamage);
-            // }
         }
 
         private bool IsAttackOnCooldown() =>
@@ -122,20 +116,16 @@ namespace Code.Enemy
                 _heroLayerMask);
             hit = null;
 
-            // hit = _hitsBuffer.FirstOrDefault();
-            //
-            // return hitsCount > 0;
-
-            if (hitsCount > 0)
+            if (hitsCount <= 0)
+                return false;
+            
+            for (int i = 0; i < hitsCount; i++)
             {
-                for (int i = 0; i < hitsCount; i++)
+                if (_hitsBuffer[i] != null)
                 {
-                    if (_hitsBuffer[i] != null)
-                    {
-                        hit = _hitsBuffer[i];
+                    hit = _hitsBuffer[i];
 
-                        return true;
-                    }
+                    return true;
                 }
             }
 
@@ -144,15 +134,6 @@ namespace Code.Enemy
 
         private Vector3 GetAttackStartPosition()
         {
-            // return new Vector3(transform.position.x, transform.position.y + _attackOffsetY, transform.position.z) +
-            //        _attackOffsetForward * transform.forward;
-
-            // Vector3 directionToHero = (_heroTransform.position - transform.position).normalized;
-            // Vector3 attackPoint = transform.position + directionToHero * _attackOffsetForward;
-            // attackPoint.y += _attackOffsetY;
-            //
-            // return attackPoint;
-
             Vector3 directionToHero = (_heroTransform.position - transform.position).normalized;
             float distanceToHero = Vector3.Distance(transform.position, _heroTransform.position);
 

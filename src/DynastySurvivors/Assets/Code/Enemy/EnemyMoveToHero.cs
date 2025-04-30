@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Code.Enemy
 {
@@ -25,7 +26,12 @@ namespace Code.Enemy
             else
                 _gameFactory.HeroCreated += InitializeHero;
         }
-        
+
+        private void Start()
+        {
+            _agent.avoidancePriority = Random.Range(30, 60);
+        }
+
         private void Update()
         {
             if (IsHeroInitialized() && IsEnemyFarFromHero())

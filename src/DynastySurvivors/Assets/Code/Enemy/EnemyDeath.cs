@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Code.Enemy
 {
-    [RequireComponent(typeof(EnemyHealth), typeof(EnemyAnimator))]
+    [RequireComponent(typeof(EnemyHealth), typeof(EnemyAnimator), typeof(EnemyMoveToHero))]
     public class EnemyDeath : MonoBehaviour
     {
         public event Action Died;

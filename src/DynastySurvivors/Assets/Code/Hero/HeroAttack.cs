@@ -8,13 +8,14 @@ using Zenject;
 
 namespace Code.Hero
 {
-    [RequireComponent(typeof(HeroAnimator), typeof(CharacterController))]
+    [RequireComponent(typeof(HeroAnimator), typeof(CharacterController), typeof(Cooldown))]
     public class HeroAttack : MonoBehaviour, ISavedProgressReader
     {
         private const string HittableLayerMask = "Hittable";
 
         [SerializeField] private HeroAnimator _heroAnimator;
         [SerializeField] private CharacterController _characterController;
+        [SerializeField] private Cooldown _cooldown;
 
         private static int _hittableLayerMask;
 
@@ -38,8 +39,12 @@ namespace Code.Hero
 
         private void Update()
         {
-            if (_inputService.IsAttackButtonUp() && !_heroAnimator.IsAttacking)
+            if (_inputService.IsAttackButtonUp() && !_heroAnimator.IsAttacking && !_cooldown.IsOnCooldown())
+            {
                 _heroAnimator.PlayAttack();
+                
+                _cooldown.SetCooldown(_stats.AttackCooldown);
+            }
         }
 
         public void LoadProgress(PlayerProgress progress) =>

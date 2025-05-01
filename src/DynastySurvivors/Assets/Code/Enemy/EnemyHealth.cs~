@@ -10,7 +10,9 @@ namespace Code.Enemy
 
         [SerializeField]
         private EnemyAnimator _enemyAnimator;
+        [SerializeField]
         private float _current;
+        [SerializeField]
         private float _max;
         
         [SerializeField]

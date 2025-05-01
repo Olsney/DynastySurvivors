@@ -77,24 +77,34 @@ namespace Code.Infrastructure.Factory
             switch (enemyTypeId)
             {
                 case EnemyTypeId.Skeleton:
-                    EnemyAreaPassiveAttack enemyAreaPassiveAttack = enemy.GetComponent<EnemyAreaPassiveAttack>();
-                    enemyAreaPassiveAttack.Initialize(enemyData.Damage, enemyData.AttackCooldown);
+                    CreateSkeleton(enemy, enemyData);
                     break;
                 case EnemyTypeId.Giant:
-                    EnemyMeleeAttack enemyMeleeAttack = enemy.GetComponent<EnemyMeleeAttack>();
-                    enemyMeleeAttack.Construct(HeroGameObject.transform);
-                    enemyMeleeAttack.Initialize(
-                        enemyData.Damage, 
-                        enemyData.AttackCooldown, 
-                        enemyData.AttackOffsetY, 
-                        enemyData.AttackOffsetForward, 
-                        enemyData.AttackCleavage);
+                    CreateGiant(enemy, enemyData);
                     break;
             }
             
             enemy.GetComponent<EnemyRotateToHero>()?.Construct(HeroGameObject.transform);
             
             return enemy;
+        }
+
+        private void CreateGiant(GameObject enemy, EnemyStaticData enemyData)
+        {
+            EnemyMeleeAttack enemyMeleeAttack = enemy.GetComponent<EnemyMeleeAttack>();
+            enemyMeleeAttack.Construct(HeroGameObject.transform);
+            enemyMeleeAttack.Initialize(
+                enemyData.Damage, 
+                enemyData.AttackCooldown, 
+                enemyData.AttackOffsetY, 
+                enemyData.AttackOffsetForward, 
+                enemyData.AttackCleavage);
+        }
+
+        private static void CreateSkeleton(GameObject enemy, EnemyStaticData enemyData)
+        {
+            EnemyAreaPassiveAttack enemyAreaPassiveAttack = enemy.GetComponent<EnemyAreaPassiveAttack>();
+            enemyAreaPassiveAttack.Initialize(enemyData.Damage, enemyData.AttackCooldown);
         }
 
         private GameObject InstantiateRegistered(string prefabPath, Vector3 at)

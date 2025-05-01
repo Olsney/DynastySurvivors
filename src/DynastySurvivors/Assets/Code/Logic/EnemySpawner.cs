@@ -23,10 +23,7 @@ namespace Code.Logic
         {
             _identifier = identifier;
             _factory = factory;
-        }
-
-        private void Awake()
-        {
+            
             Id = _identifier.Next();
         }
 

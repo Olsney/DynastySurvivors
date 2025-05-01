@@ -20,13 +20,17 @@ namespace Code.Hero
 
         public float Current => _current;
         public float Max => _max;
-        public void Initialize(float current, float max)
-        {
-            //TODO: Решить проблему с инишиалайзом и лоадпрогрессом. Посмотреть как другие решали, может пересмотреть созвон.
-        }
 
         public event Action Changed;
-        
+
+        public void Initialize(float current, float max)
+        {
+            _max = max;
+            _current = current;
+            
+            Changed?.Invoke();
+        }
+
         public void LoadProgress(PlayerProgress progress)
         {
             _healthData = progress.HeroHealth;

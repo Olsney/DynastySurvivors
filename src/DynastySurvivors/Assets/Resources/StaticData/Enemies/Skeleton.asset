@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441a174a7c35458490d0f4dda7a144f5, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
-  EnemyTypeId: 0
-  Prefab: {fileID: 0}
+  EnemyType: 0
+  Prefab: {fileID: 1064298965650098, guid: 2a0b638530a1bf14a951733b03ba52b3, type: 3}
   Health: 50
   MoveSpeed: 2.5
   AttackCooldown: 1
-  Cleavage: 0.5
+  AttackCleavage: 0.5
+  AttackOffsetY: 0.5
+  AttackOffsetForward: 0.5
   EffectiveDistance: 0.5
   Damage: 0.2

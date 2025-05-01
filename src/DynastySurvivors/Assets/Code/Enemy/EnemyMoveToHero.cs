@@ -27,9 +27,12 @@ namespace Code.Enemy
 
         private void Update()
         {
-            if (IsEnemyFarFromHero())
+            if (IsInitialized() && IsEnemyFarFromHero())
                 _agent.destination = _heroTransform.position;
         }
+        
+        private bool IsInitialized() => 
+            _heroTransform != null;
         
         private bool IsEnemyFarFromHero() =>
            _agent.transform.position.SqrDistance(_heroTransform.position) > MinDistanceToHero;

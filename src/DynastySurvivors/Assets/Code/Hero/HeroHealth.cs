@@ -22,27 +22,7 @@ namespace Code.Hero
         public float Max => _max;
 
         public event Action Changed;
-
-        // public float Current
-        // {
-        //     get => _healthData.CurrentHealth;
-        //     set
-        //     {
-        //         if (_healthData.CurrentHealth != value)
-        //         {
-        //             _healthData.CurrentHealth = value;
-        //
-        //             Changed?.Invoke();
-        //         }
-        //     }
-        // }
-        //
-        // public float Max
-        // {
-        //     get => _healthData.MaxHealth;
-        //     set => _healthData.MaxHealth = value;
-        // }
-
+        
         public void LoadProgress(PlayerProgress progress)
         {
             _healthData = progress.HeroHealth;
@@ -55,8 +35,6 @@ namespace Code.Hero
 
         public void UpdateProgress(PlayerProgress progress)
         {
-            // progress.HeroHealth.CurrentHealth = Current;
-            // progress.HeroHealth.MaxHealth = Max;
             progress.HeroHealth.CurrentHealth = _current;
             progress.HeroHealth.MaxHealth = _max;
         }

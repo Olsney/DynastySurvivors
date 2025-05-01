@@ -33,22 +33,22 @@ namespace Code.Services.StaticData.Enemy
 
         [FormerlySerializedAs("Cleavage")]
         [BoxGroup("Attack Settings"), LabelWidth(120)]
-        [Range(0.5f, 2), Tooltip("Width of the attack hitbox.")]
+        [Range(0.01f, 2), Tooltip("Width of the attack hitbox.")]
         [GUIColor(1f, 0.95f, 0.85f)]
-        public float AttackCleavage = 0.5f;        
+        public float AttackCleavage = 0.1f;        
         
         [BoxGroup("Attack Settings"), LabelWidth(120)]
         [Range(0.5f, 2), Tooltip("Width of the attack hitbox.")]
         [GUIColor(1f, 0.95f, 0.85f)]
-        public float AttackOffsetY = 0.5f;        
+        public float AttackOffsetY = 1f;        
         
         [BoxGroup("Attack Settings"), LabelWidth(120)]
         [Range(0.5f, 2), Tooltip("Width of the attack hitbox.")]
         [GUIColor(1f, 0.95f, 0.85f)]
-        public float AttackOffsetForward = 0.5f;
+        public float AttackOffsetForward = 1f;
 
         [BoxGroup("Attack Settings"), LabelWidth(120)]
-        [Range(0.5f, 2), Tooltip("Effective distance for attack reach.")]
+        [Range(0.1f, 2), Tooltip("Effective distance for attack reach.")]
         [GUIColor(1f, 0.95f, 0.85f)]
         public float EffectiveDistance = 0.5f;
 

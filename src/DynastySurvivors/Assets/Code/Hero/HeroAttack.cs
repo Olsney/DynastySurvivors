@@ -50,7 +50,7 @@ namespace Code.Hero
             {
                 _heroAnimator.PlayAttack();
                 
-                _cooldown.SetCooldown(_stats.AttackCooldown);
+                _cooldown.SetCooldown(_attackCooldown);
             }
         }
 
@@ -90,7 +90,7 @@ namespace Code.Hero
 
                     if (damageable != null)
                     {
-                        damageable.TakeDamage(_stats.Damage);
+                        damageable.TakeDamage(_damage);
                     }
                 }
                 else
@@ -99,11 +99,11 @@ namespace Code.Hero
                 }
             }
 
-            PhysicsDebugHelpers.DrawRaysFromPoint(GetStartPoint(), _stats.DamageRadius, Color.red, 1f);
+            PhysicsDebugHelpers.DrawRaysFromPoint(GetStartPoint(), _damageRadius, Color.red, 1f);
         }
 
         private int GetHitCount() =>
-            Physics.OverlapSphereNonAlloc(GetStartPoint(), _stats.DamageRadius, _hitsBuffer, _hittableLayerMask);
+            Physics.OverlapSphereNonAlloc(GetStartPoint(), _damageRadius, _hitsBuffer, _hittableLayerMask);
 
         private Vector3 GetStartPoint()
         {
@@ -117,7 +117,7 @@ namespace Code.Hero
                 return;
         
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(GetStartPoint() + transform.forward, _stats.DamageRadius);
+            Gizmos.DrawWireSphere(GetStartPoint() + transform.forward, _damageRadius);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.Factory;
+using Code.Infrastructure.Services.Identifiers;
 using Code.Infrastructure.States;
 using Code.Logic.Curtain;
 using Code.Services.Input;
@@ -33,6 +34,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
             Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
+            Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
         }
 
         private void BindStates()

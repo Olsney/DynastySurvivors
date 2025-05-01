@@ -1,6 +1,8 @@
-﻿using Code.StaticData;
+﻿using Code.Infrastructure.Services.Identifiers;
+using Code.StaticData;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Zenject;
 
 namespace Code.Logic
 {
@@ -9,6 +11,12 @@ namespace Code.Logic
         [SerializeField] private EnemyTypeId _enemyTypeId;
         [SerializeField] private bool _slain;
         
-        private string _id;
+        private int _id;
+
+        [Inject]
+        private void Construct(IIdentifierService identifier)
+        {
+            _id = identifier.Next();
+        }
     }
 }

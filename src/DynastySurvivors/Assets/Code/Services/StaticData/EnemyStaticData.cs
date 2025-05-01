@@ -1,5 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Code.Services.StaticData
 {
@@ -29,10 +30,21 @@ namespace Code.Services.StaticData
         [GUIColor(1f, 0.9f, 0.8f)]
         public float AttackCooldown = 3.0f;
 
+        [FormerlySerializedAs("Cleavage")]
         [BoxGroup("Attack Settings"), LabelWidth(120)]
         [Range(0.5f, 2), Tooltip("Width of the attack hitbox.")]
         [GUIColor(1f, 0.95f, 0.85f)]
-        public float Cleavage = 0.5f;
+        public float AttackCleavage = 0.5f;        
+        
+        [BoxGroup("Attack Settings"), LabelWidth(120)]
+        [Range(0.5f, 2), Tooltip("Width of the attack hitbox.")]
+        [GUIColor(1f, 0.95f, 0.85f)]
+        public float AttackOffsetY = 0.5f;        
+        
+        [BoxGroup("Attack Settings"), LabelWidth(120)]
+        [Range(0.5f, 2), Tooltip("Width of the attack hitbox.")]
+        [GUIColor(1f, 0.95f, 0.85f)]
+        public float AttackOffsetForward = 0.5f;
 
         [BoxGroup("Attack Settings"), LabelWidth(120)]
         [Range(0.5f, 2), Tooltip("Effective distance for attack reach.")]

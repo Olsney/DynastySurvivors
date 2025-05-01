@@ -7,5 +7,6 @@ namespace Code.Logic
         event Action Changed;
         float Current { get; }
         float Max { get; }
+        void Initialize(float current, float max);
     }
 }

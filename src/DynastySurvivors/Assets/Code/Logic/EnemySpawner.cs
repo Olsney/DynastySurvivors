@@ -1,4 +1,5 @@
 ﻿using Code.Data;
+using Code.Enemy;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Services.Identifiers;
 using Code.Services.PersistentProgress;
@@ -13,15 +14,15 @@ namespace Code.Logic
         [SerializeField] private EnemyTypeId _enemyTypeId;
         
         private IIdentifierService _identifier;
-        private IGameFactory _gameFactory;
+        private IGameFactory _factory;
 
         [field: SerializeField] public int Id { get; private set; }
 
         [Inject]
-        private void Construct(IIdentifierService identifier, IGameFactory gameFactory)
+        private void Construct(IIdentifierService identifier, IGameFactory factory)
         {
             _identifier = identifier;
-            _gameFactory = gameFactory;
+            _factory = factory;
         }
 
         private void Awake()
@@ -35,8 +36,8 @@ namespace Code.Logic
         }
 
         private void Spawn()
-        {
-            
+        { 
+            _factory.CreateEnemy(_enemyTypeId, transform);
         }
     }
 }

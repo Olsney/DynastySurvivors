@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Code.Infrastructure.Services;
 using Code.Services.PersistentProgress;
+using Code.Services.StaticData;
 using UnityEngine;
 
 namespace Code.Infrastructure.Factory
@@ -10,7 +11,6 @@ namespace Code.Infrastructure.Factory
     {
         GameObject CreateHero(GameObject at);
         GameObject HeroGameObject { get; }
-        event Action HeroCreated;
         GameObject CreateHud();
         GameObject CreateCurtain();
         List<ISavedProgressReader> ProgressReaders { get; }
@@ -19,5 +19,6 @@ namespace Code.Infrastructure.Factory
         GameObject CreateSaveTriggerContainer();
         void Register(ISavedProgressReader progressReader);
 
+        GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent);
     }
 }

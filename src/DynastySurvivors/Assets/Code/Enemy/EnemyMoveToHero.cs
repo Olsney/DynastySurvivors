@@ -1,4 +1,5 @@
-﻿using Code.Infrastructure.Factory;
+﻿using Code.Data;
+using Code.Infrastructure.Factory;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -16,16 +17,8 @@ namespace Code.Enemy
         private Transform _heroTransform;
         private IGameFactory _gameFactory;
 
-        [Inject]
-        private void Construct(IGameFactory gameFactory)
-        {
-            _gameFactory = gameFactory;
-
-            if (_gameFactory.HeroGameObject != null)
-                InitializeHero();
-            else
-                _gameFactory.HeroCreated += InitializeHero;
-        }
+        public void Construct(Transform heroTransform) => 
+            _heroTransform = heroTransform;
 
         private void Start()
         {
@@ -34,18 +27,11 @@ namespace Code.Enemy
 
         private void Update()
         {
-            if (IsHeroInitialized() && IsEnemyFarFromHero())
+            if (IsEnemyFarFromHero())
                 _agent.destination = _heroTransform.position;
         }
         
         private bool IsEnemyFarFromHero() =>
-            Vector3.Distance(_heroTransform.position, _agent.transform.position) > MinDistanceToHero;
-
-        private bool IsHeroInitialized() =>
-            _heroTransform != null;
-
-        private void InitializeHero() =>
-            _heroTransform = _gameFactory.HeroGameObject.transform;
+           _agent.transform.position.SqrDistance(_heroTransform.position) > MinDistanceToHero;
     }
-    
 }

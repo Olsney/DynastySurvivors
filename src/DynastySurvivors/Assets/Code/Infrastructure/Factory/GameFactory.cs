@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using Code.Enemy;
 using Code.Infrastructure.AssetManagement;
+using Code.Logic;
 using Code.Services.PersistentProgress;
+using Code.Services.StaticData;
+using Code.UI;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Code.Infrastructure.Factory
 {
     public class GameFactory : IGameFactory
     {
-        public event Action HeroCreated;
-        
         private readonly IAssetProvider _assets;
         private readonly IInstantiator _container;
+        private readonly IStaticDataService _staticData;
+        
         private GameObject _heroGameObject;
 
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
@@ -21,10 +27,11 @@ namespace Code.Infrastructure.Factory
 
         public GameObject HeroGameObject => _heroGameObject;
 
-        public GameFactory(IAssetProvider assets, IInstantiator container)
+        public GameFactory(IAssetProvider assets, IInstantiator container, IStaticDataService staticData)
         {
             _assets = assets;
             _container = container;
+            _staticData = staticData;
         }
 
 
@@ -34,9 +41,7 @@ namespace Code.Infrastructure.Factory
         public GameObject CreateHero(GameObject at)
         {
             _heroGameObject = InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
-
-            HeroCreated?.Invoke();
-
+            
             return _heroGameObject;
         }
 
@@ -54,6 +59,42 @@ namespace Code.Infrastructure.Factory
             GameObject prefab = _assets.Load(AssetPath.LoadCurtainPath);
             
             return _container.InstantiatePrefab(prefab);
+        }
+
+        public GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent)
+        {
+            EnemyStaticData enemyData = _staticData.ForEnemy(enemyTypeId);
+
+            GameObject enemy = Object.Instantiate(enemyData.Prefab, parent.position, Quaternion.identity, parent);
+
+            IHealth health = enemy.GetComponent<IHealth>();
+            health.Initialize(enemyData.Health, enemyData.Health);
+            
+            enemy.GetComponent<ActorUI>().Construct(health);
+            enemy.GetComponent<EnemyMoveToHero>().Construct(HeroGameObject.transform);
+            enemy.GetComponent<NavMeshAgent>().speed = enemyData.MoveSpeed;
+            
+            switch (enemyTypeId)
+            {
+                case EnemyTypeId.Skeleton:
+                    EnemyAreaPassiveAttack enemyAreaPassiveAttack = enemy.GetComponent<EnemyAreaPassiveAttack>();
+                    enemyAreaPassiveAttack.Initialize(enemyData.Damage, enemyData.AttackCooldown);
+                    break;
+                case EnemyTypeId.Giant:
+                    EnemyMeleeAttack enemyMeleeAttack = enemy.GetComponent<EnemyMeleeAttack>();
+                    enemyMeleeAttack.Construct(HeroGameObject.transform);
+                    enemyMeleeAttack.Initialize(
+                        enemyData.Damage, 
+                        enemyData.AttackCooldown, 
+                        enemyData.AttackOffsetY, 
+                        enemyData.AttackOffsetForward, 
+                        enemyData.AttackCleavage);
+                    break;
+            }
+            
+            enemy.GetComponent<EnemyRotateToHero>()?.Construct(HeroGameObject.transform);
+            
+            return enemy;
         }
 
         private GameObject InstantiateRegistered(string prefabPath, Vector3 at)

@@ -23,7 +23,13 @@ namespace Code.Enemy
 
         public float Current => _current;
         public float Max => _max;
-
+        
+        public void Initialize(float current, float max)
+        {
+            _max = max;
+            _current = current;
+            Changed?.Invoke();
+        }
 
         public void TakeDamage(float damage)
         {

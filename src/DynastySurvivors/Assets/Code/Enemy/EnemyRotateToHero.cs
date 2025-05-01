@@ -10,21 +10,11 @@ namespace Code.Enemy
         private float _rotationSpeed;
         
         private Transform _heroTransform;
-        private IGameFactory _gameFactory;
         private Vector3 _positionToLook;
-
-        [Inject]
-        private void Construct(IGameFactory gameFactory)
-        {
-            _gameFactory = gameFactory;
-        }
         
-        private void Start()
+        public void Construct(Transform heroTransform)
         {
-            if (_gameFactory.HeroGameObject != null)
-                IsHeroInitialized();
-            else
-                _gameFactory.HeroCreated += InitializeHero;
+            _heroTransform = heroTransform;
         }
         
         private void Update()
@@ -32,9 +22,6 @@ namespace Code.Enemy
             if (IsHeroInitialized())
                 RotateTowardsHero();
         }
-        
-        private void InitializeHero() =>
-            _heroTransform = _gameFactory.HeroGameObject.transform;
 
         private bool IsHeroInitialized() =>
             _heroTransform != null;

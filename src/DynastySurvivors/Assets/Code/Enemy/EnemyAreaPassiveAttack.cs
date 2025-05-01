@@ -13,14 +13,13 @@ namespace Code.Enemy
         [SerializeField] private float _attackCooldown = 0.5f;
         [SerializeField] private Cooldown _cooldown;
 
-        private IGameFactory _gameFactory;
         private IDamageable _target;
         private bool _isAttackEnabled;
 
-        [Inject]
-        private void Construct(IGameFactory gameFactory)
+        public void Initialize(float attackDamage, float attackCooldown)
         {
-            _gameFactory = gameFactory;
+            _attackDamage = attackDamage;
+            _attackCooldown = attackCooldown;
         }
 
         private void Awake()

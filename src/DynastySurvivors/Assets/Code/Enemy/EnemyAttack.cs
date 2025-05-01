@@ -6,5 +6,7 @@ namespace Code.Enemy
     {
         public abstract void EnableAttack();
         public abstract void DisableAttack();
+
+        protected Transform HeroTransform { get; private set; }
     }
 }

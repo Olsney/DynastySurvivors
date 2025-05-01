@@ -4,6 +4,9 @@ namespace Code.Data
 {
     public static class DataExtensions
     {
+        public static float SqrDistance(this Vector3 start, Vector3 end) => 
+            (end - start).sqrMagnitude;
+        
         public static Vector3Data AsVectorData(this Vector3 vector) =>
             new Vector3Data(vector.x, vector.y, vector.z);
 

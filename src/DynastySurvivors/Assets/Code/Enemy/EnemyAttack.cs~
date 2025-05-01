@@ -1,7 +1,0 @@
-﻿namespace Code.Enemy
-{
-    public class EnemyAttack
-    {
-        
-    }
-}

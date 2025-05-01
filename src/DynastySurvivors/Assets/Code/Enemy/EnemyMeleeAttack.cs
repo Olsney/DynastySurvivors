@@ -18,35 +18,30 @@ namespace Code.Enemy
         [SerializeField] private float _attackOffsetForward = 0.5f;
         [SerializeField] private float _attackCleavage = 0.5f;
 
-        private IGameFactory _gameFactory;
         private Transform _heroTransform;
         private float _attackCooldownTimer;
         private bool _isAttacking;
         private int _heroLayerMask;
         private Collider[] _hitsBuffer = new Collider[1];
         private bool _isAttackEnabled;
-
-        [Inject]
-        private void Construct(IGameFactory gameFactory)
+        
+        public void Construct(Transform heroTransform)
         {
-            _gameFactory = gameFactory;
+            _heroTransform = heroTransform;
+        }
+
+        public void Initialize(float attackDamage, float attackCooldown, float attackOffsetY, float attackOffsetForward, float attackCleavage)
+        {
+            _attackDamage = attackDamage;
+            _attackCooldown = attackCooldown;
+            _attackOffsetY = attackOffsetY;
+            _attackOffsetForward = attackOffsetForward;
+            _attackCleavage = attackCleavage;
         }
 
         private void Awake()
         {
             _heroLayerMask = 1 << LayerMask.NameToLayer(HeroLayerMask);
-
-            GameObject heroGameObject = _gameFactory.HeroGameObject;
-
-            if (heroGameObject != null)
-                _heroTransform = heroGameObject.transform;
-            else
-                _gameFactory.HeroCreated += OnHeroCreated;
-        }
-
-        private void OnDestroy()
-        {
-            _gameFactory.HeroCreated -= OnHeroCreated;
         }
 
         private void Update()
@@ -106,9 +101,6 @@ namespace Code.Enemy
 
         private bool IsAttackOnCooldown() =>
             _attackCooldownTimer > 0f;
-
-        private void OnHeroCreated() =>
-            _heroTransform = _gameFactory.HeroGameObject.transform;
 
         private bool IsHitted(out Collider hit)
         {

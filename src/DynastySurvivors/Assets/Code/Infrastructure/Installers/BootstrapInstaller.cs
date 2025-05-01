@@ -7,6 +7,7 @@ using Code.Services.Input;
 using Code.Services.PersistentProgress;
 using Code.Services.SaveLoad;
 using Code.Services.StaticData;
+using Code.Services.StaticData.Enemy;
 using UnityEngine;
 using Zenject;
 

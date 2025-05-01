@@ -33,6 +33,9 @@ namespace Code.Hero
 
         public void LoadProgress(PlayerProgress progress)
         {
+            if (progress.HeroHealth.IsInitialized == false)
+                return;
+            
             _healthData = progress.HeroHealth;
             
             _current = _healthData.CurrentHealth;
@@ -43,6 +46,8 @@ namespace Code.Hero
 
         public void UpdateProgress(PlayerProgress progress)
         {
+            progress.HeroHealth.IsInitialized = true;
+            
             progress.HeroHealth.CurrentHealth = _current;
             progress.HeroHealth.MaxHealth = _max;
         }

@@ -4,6 +4,7 @@ using Code.Infrastructure.Factory;
 using Code.Logic;
 using Code.Logic.Curtain;
 using Code.Services.PersistentProgress;
+using Code.Services.StaticData.Hero;
 using Code.UI;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Code.Infrastructure.States
 {
     public class LoadLevelState : IPayloadedState<string>
     {
-        private const string InitialPoint = "InitialPoint";
+        private const string InitialPointTag = "InitialPoint";
         private const string EnemySpawnerTag = "EnemySpawner";
 
         private readonly GameStateMachine _stateMachine;
@@ -63,11 +64,14 @@ namespace Code.Infrastructure.States
             
             _gameFactory.CreateSaveTriggerContainer();
             
-            GameObject hero = _gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPoint));
+            GameObject hero = _gameFactory.CreateHero(HeroTypeId.Woman, at: GetHeroSpawnPosition());
             
             InitHud(hero);
             CameraFollow(hero);
         }
+        
+        private Vector3 GetHeroSpawnPosition() => 
+            GameObject.FindWithTag(InitialPointTag).transform.position;
 
         private void InitSpawners()
         {

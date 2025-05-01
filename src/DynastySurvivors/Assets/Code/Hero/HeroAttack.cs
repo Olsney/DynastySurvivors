@@ -18,17 +18,25 @@ namespace Code.Hero
 
         private static int _hittableLayerMask;
 
-        private float _attackRadius;
-        private float _attackDamage;
         private Collider[] _hitsBuffer = new Collider[8];
-
         private IInputService _inputService;
         private HeroStats _stats;
+
+        private float _damage;
+        private float _damageRadius;
+        private float _attackCooldown;
 
         [Inject]
         public void Construct(IInputService inputService)
         {
             _inputService = inputService;
+        }
+
+        public void Initialize(float damage, float damageRadius, float attackCooldown)
+        {
+            _damage = damage;
+            _damageRadius = damageRadius;
+            _attackCooldown = attackCooldown;
         }
 
         private void Awake()
@@ -46,9 +54,18 @@ namespace Code.Hero
             }
         }
 
-        public void LoadProgress(PlayerProgress progress) =>
+        public void LoadProgress(PlayerProgress progress)
+        {
+            if (progress.HeroStats.IsInitialized == false)
+                return;
+            
             _stats = progress.HeroStats;
-        
+
+            _damage = _stats.Damage;
+            _damageRadius = _stats.DamageRadius;
+            _attackCooldown = _stats.AttackCooldown;
+        }
+
         public void OnAttack()
         {
             int hitCount = GetHitCount();

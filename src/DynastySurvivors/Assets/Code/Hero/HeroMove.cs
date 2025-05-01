@@ -11,7 +11,8 @@ namespace Code.Hero
     public class HeroMove : MonoBehaviour, ISavedProgress
     {
         [SerializeField] private CharacterController _characterController;
-        [SerializeField] private float _movementSpeed;
+        
+        private float _movementSpeed;
 
         private IInputService _inputService;
         private Camera _camera;
@@ -20,6 +21,11 @@ namespace Code.Hero
         public void Construct(IInputService inputService)
         {
             _inputService = inputService;
+        }
+
+        public void Initialize(float movementSpeed)
+        {
+            _movementSpeed = movementSpeed;
         }
 
         private void Start() =>

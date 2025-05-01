@@ -8,6 +8,7 @@ namespace Code.Data
     {
         public float CurrentHealth;
         public float MaxHealth;
+        public bool IsInitialized;
 
         public void ResetHp() => CurrentHealth = MaxHealth;
     }

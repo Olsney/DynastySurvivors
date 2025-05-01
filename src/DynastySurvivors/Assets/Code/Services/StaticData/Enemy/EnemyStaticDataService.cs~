@@ -2,9 +2,9 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Code.Services.StaticData
+namespace Code.Services.StaticData.Enemy
 {
-    public class StaticDataService : IStaticDataService
+    public class EnemyEnemyStaticDataService : IEnemyStaticDataService
     {
         private const string EnemiesStaticDataPath = "StaticData/Enemies";
         

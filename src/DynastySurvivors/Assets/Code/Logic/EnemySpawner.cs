@@ -4,6 +4,7 @@ using Code.Infrastructure.Factory;
 using Code.Infrastructure.Services.Identifiers;
 using Code.Services.PersistentProgress;
 using Code.Services.StaticData;
+using Code.Services.StaticData.Enemy;
 using UnityEngine;
 using Zenject;
 

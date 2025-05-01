@@ -2,14 +2,15 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Code.Services.StaticData
+namespace Code.Services.StaticData.Enemy
 {
     [CreateAssetMenu(fileName = "EnemyData", menuName = "StaticData/EnemyData")]
     public class EnemyStaticData : ScriptableObject
     {
+        [FormerlySerializedAs("EnemyTypeId")]
         [BoxGroup("Basic Info"), LabelWidth(120)]
         [GUIColor(0.8f, 1f, 1f)]
-        public EnemyTypeId EnemyTypeId;
+        public EnemyTypeId EnemyType;
 
         [BoxGroup("Basic Info"), PreviewField(60), HideLabel]
         [GUIColor(1f, 1f, 0.8f)]

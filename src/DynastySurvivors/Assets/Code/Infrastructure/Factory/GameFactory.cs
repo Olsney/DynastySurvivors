@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Enemy;
+using Code.Hero;
 using Code.Infrastructure.AssetManagement;
 using Code.Logic;
 using Code.Services.PersistentProgress;
 using Code.Services.StaticData;
+using Code.Services.StaticData.Enemy;
+using Code.Services.StaticData.Hero;
 using Code.UI;
 using UnityEngine;
 using UnityEngine.AI;
@@ -38,10 +41,28 @@ namespace Code.Infrastructure.Factory
         public GameObject CreateSaveTriggerContainer() => 
             InstantiateRegistered(AssetPath.SaveTriggerContainerPath);
 
-        public GameObject CreateHero(GameObject at)
+        public GameObject CreateHero(HeroTypeId heroTypeId, Vector3 at)
         {
-            _heroGameObject = InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
+            HeroStaticData heroData = _staticData.GetHero(heroTypeId);
             
+            _heroGameObject = InstantiateRegistered(heroData.Prefab, at);
+
+            IHealth health = _heroGameObject.GetComponent<IHealth>();
+            health.Initialize(
+                heroData.CurrentHealth, 
+                heroData.MaxHealth
+                );
+
+            HeroMove heroMove = _heroGameObject.GetComponent<HeroMove>();
+            heroMove.Initialize(heroData.MovementSpeed);
+
+            HeroAttack heroAttack = _heroGameObject.GetComponent<HeroAttack>();
+            heroAttack.Initialize(
+                heroData.Damage,
+                heroData.DamageRadius,
+                heroData.AttackCooldown
+                );
+
             return _heroGameObject;
         }
 
@@ -61,11 +82,11 @@ namespace Code.Infrastructure.Factory
             return _container.InstantiatePrefab(prefab);
         }
 
-        public GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform parent)
+        public GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform container)
         {
-            EnemyStaticData enemyData = _staticData.ForEnemy(enemyTypeId);
+            EnemyStaticData enemyData = _staticData.GetEnemy(enemyTypeId);
 
-            GameObject enemy = Object.Instantiate(enemyData.Prefab, parent.position, Quaternion.identity, parent);
+            GameObject enemy = Object.Instantiate(enemyData.Prefab, container.position, Quaternion.identity, container);
 
             IHealth health = enemy.GetComponent<IHealth>();
             health.Initialize(enemyData.Health, enemyData.Health);
@@ -98,13 +119,25 @@ namespace Code.Infrastructure.Factory
                 enemyData.AttackCooldown, 
                 enemyData.AttackOffsetY, 
                 enemyData.AttackOffsetForward, 
-                enemyData.AttackCleavage);
+                enemyData.AttackCleavage
+                );
         }
 
         private static void CreateSkeleton(GameObject enemy, EnemyStaticData enemyData)
         {
             EnemyAreaPassiveAttack enemyAreaPassiveAttack = enemy.GetComponent<EnemyAreaPassiveAttack>();
-            enemyAreaPassiveAttack.Initialize(enemyData.Damage, enemyData.AttackCooldown);
+            enemyAreaPassiveAttack.Initialize(
+                enemyData.Damage, 
+                enemyData.AttackCooldown
+                );
+        }
+        
+        private GameObject InstantiateRegistered(GameObject prefab, Vector3 at)
+        {
+            GameObject instance = _container.InstantiatePrefab(prefab, at, Quaternion.identity, null);
+      
+            RegisterProgressWatchers(instance);
+            return instance;
         }
 
         private GameObject InstantiateRegistered(string prefabPath, Vector3 at)
@@ -116,14 +149,6 @@ namespace Code.Infrastructure.Factory
             return instance;
         }
 
-        public void Register(ISavedProgressReader progressReader)
-        {
-            if(progressReader is ISavedProgress progressWriter)
-                ProgressWriters.Add(progressWriter);
-            
-            ProgressReaders.Add(progressReader);
-        }
-
         private GameObject InstantiateRegistered(string prefabPath)
         {
             GameObject prefab = _assets.Load(path: prefabPath);
@@ -131,6 +156,14 @@ namespace Code.Infrastructure.Factory
             RegisterProgressWatchers(instance);
 
             return instance;
+        }
+
+        public void Register(ISavedProgressReader progressReader)
+        {
+            if(progressReader is ISavedProgress progressWriter)
+                ProgressWriters.Add(progressWriter);
+            
+            ProgressReaders.Add(progressReader);
         }
 
         private void RegisterProgressWatchers(GameObject hero)

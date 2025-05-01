@@ -1,0 +1,16 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Code.Services.StaticData.Enemy;
+using UnityEngine;
+
+namespace Code.Services.StaticData.Hero
+{
+    public class HeroStaticDataService
+    {
+        private const string HeroesStaticDataPath = "StaticData/Hero";
+        
+        private Dictionary<EnemyTypeId, HeroStaticData> _heroes;
+
+
+    }
+}

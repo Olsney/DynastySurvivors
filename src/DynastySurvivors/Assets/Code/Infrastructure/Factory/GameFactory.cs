@@ -64,7 +64,15 @@ namespace Code.Infrastructure.Factory
 
             return instance;
         }
-        
+
+        public void Register(ISavedProgressReader progressReader)
+        {
+            if(progressReader is ISavedProgress progressWriter)
+                ProgressWriters.Add(progressWriter);
+            
+            ProgressReaders.Add(progressReader);
+        }
+
         private GameObject InstantiateRegistered(string prefabPath)
         {
             GameObject prefab = _assets.Load(path: prefabPath);
@@ -78,14 +86,6 @@ namespace Code.Infrastructure.Factory
         {
             foreach (ISavedProgressReader progressReader in hero.GetComponentsInChildren<ISavedProgressReader>())
                 Register(progressReader);
-        }
-
-        private void Register(ISavedProgressReader progressReader)
-        {
-            if(progressReader is ISavedProgress progressWriter)
-                ProgressWriters.Add(progressWriter);
-            
-            ProgressReaders.Add(progressReader);
         }
     }
 }

@@ -1,22 +1,38 @@
-﻿using Code.Infrastructure.Services.Identifiers;
+﻿using Code.Data;
+using Code.Infrastructure.Services.Identifiers;
+using Code.Services.PersistentProgress;
 using Code.StaticData;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Code.Logic
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner : MonoBehaviour, ISavedProgressReader
     {
         [SerializeField] private EnemyTypeId _enemyTypeId;
-        [SerializeField] private bool _slain;
         
-        private int _id;
+        private IIdentifierService _identifier;
+        
+        [field: SerializeField] public int Id { get; private set; }
 
         [Inject]
         private void Construct(IIdentifierService identifier)
         {
-            _id = identifier.Next();
+            _identifier = identifier;
+        }
+
+        private void Awake()
+        {
+            Id = _identifier.Next();
+        }
+
+        public void LoadProgress(PlayerProgress progress)
+        {
+            Spawn();
+        }
+
+        private void Spawn()
+        {
         }
     }
 }

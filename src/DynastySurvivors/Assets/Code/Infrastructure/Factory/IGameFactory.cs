@@ -17,5 +17,7 @@ namespace Code.Infrastructure.Factory
         List<ISavedProgress> ProgressWriters { get; }
         void Cleanup();
         GameObject CreateSaveTriggerContainer();
+        void Register(ISavedProgressReader progressReader);
+
     }
 }

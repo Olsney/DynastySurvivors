@@ -6,6 +6,7 @@ using Code.Logic.Curtain;
 using Code.Services.Input;
 using Code.Services.PersistentProgress;
 using Code.Services.SaveLoad;
+using Code.Services.StaticData;
 using UnityEngine;
 using Zenject;
 
@@ -35,6 +36,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
             Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
+            Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
         }
 
         private void BindStates()

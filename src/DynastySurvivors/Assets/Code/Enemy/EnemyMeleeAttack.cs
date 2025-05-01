@@ -12,7 +12,7 @@ namespace Code.Enemy
 
         [SerializeField] private Cooldown _cooldown;
         [SerializeField] private EnemyAnimator _enemyAnimator;
-        [SerializeField] private float _attackDamage = 50f;
+        [SerializeField] private float _attackDamage = 10f;
         [SerializeField] private float _attackCooldown = 3f;
         [SerializeField] private float _attackOffsetY = 0.5f;
         [SerializeField] private float _attackOffsetForward = 0.5f;

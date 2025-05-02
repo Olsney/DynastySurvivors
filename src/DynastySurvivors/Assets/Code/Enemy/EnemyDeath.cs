@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Code.Enemy
 {
@@ -14,6 +15,7 @@ namespace Code.Enemy
         [SerializeField] private GameObject _deathFx;
         [SerializeField] private EnemyMoveToHero _enemyMove;
         [SerializeField] private EnemyAttack _enemyAttack;
+        [SerializeField] private NavMeshAgent _agent;
         
         private void Start() => 
             _health.Changed += OnChanged;
@@ -32,6 +34,7 @@ namespace Code.Enemy
             _health.Changed -= OnChanged;
             _enemyMove.enabled = false;
             _enemyAttack.enabled = false;
+            _agent.enabled = false;
             _animator.PlayDeath();
 
             SpawnDeathFx();

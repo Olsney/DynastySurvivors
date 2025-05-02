@@ -537,6 +537,7 @@ MonoBehaviour:
   _deathFx: {fileID: 1277154925287174, guid: b19ca7e1fe385dd4ea9f79abe16a15f5, type: 3}
   _enemyMove: {fileID: 9181306661027826823}
   _enemyAttack: {fileID: 6038218408897385941}
+  _agent: {fileID: 6096188848458084049}
 --- !u!1 &1072327778234546
 GameObject:
   m_ObjectHideFlags: 0

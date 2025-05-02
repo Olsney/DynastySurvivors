@@ -1514,6 +1514,7 @@ MonoBehaviour:
   _deathFx: {fileID: 1277154925287174, guid: b19ca7e1fe385dd4ea9f79abe16a15f5, type: 3}
   _enemyMove: {fileID: 3560086263261722142}
   _enemyAttack: {fileID: 7401313518791746336}
+  _agent: {fileID: 218809629993328952}
 --- !u!114 &5698710074408488623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3409,6 +3410,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4978646082267340}
     m_Modifications:
+    - target: {fileID: 3044680448210240448, guid: a4f51f0f5431b5946bfec627d5734515, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5112969320619142485, guid: a4f51f0f5431b5946bfec627d5734515, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -31,11 +31,11 @@ namespace Code.Services.StaticData.Enemy
         public EnemyStaticData GetEnemy(EnemyTypeId typeId) => 
             _enemies.TryGetValue(typeId, out EnemyStaticData staticData) 
                 ? staticData 
-                : throw new KeyNotFoundException($"Enemy with type: {typeId} not found");
+                : throw new KeyNotFoundException($"Enemy with type: {typeId} is not found");
         
         public HeroStaticData GetHero(HeroTypeId typeId) => 
             _heroes.TryGetValue(typeId, out HeroStaticData staticData) 
                 ? staticData 
-                : null;
+                : throw new KeyNotFoundException($"Hero with type: {typeId} is not found");
     }
 }

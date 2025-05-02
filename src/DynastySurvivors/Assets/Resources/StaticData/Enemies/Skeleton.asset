@@ -15,6 +15,8 @@ MonoBehaviour:
   EnemyType: 0
   Prefab: {fileID: 1064298965650098, guid: 2a0b638530a1bf14a951733b03ba52b3, type: 3}
   Health: 50
+  MaxLootValue: 7
+  MinLootValue: 1
   MoveSpeed: 2.5
   AttackCooldown: 1
   AttackCleavage: 0.5

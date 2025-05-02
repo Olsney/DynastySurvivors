@@ -15,6 +15,7 @@ namespace Code.Data
         {
             PositionOnLevel = new PositionOnLevel(initialLevel);
             VisitedTriggerIds = new List<int>();
+            LootData = new LootData();
         }
     }
 }

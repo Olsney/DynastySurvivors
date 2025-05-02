@@ -23,5 +23,6 @@ namespace Code.Infrastructure.Factory
 
         GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform container);
         GameObject CreateHero(HeroTypeId heroTypeId, Vector3 at);
+        GameObject CreateLoot();
     }
 }

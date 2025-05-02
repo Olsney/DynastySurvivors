@@ -325,6 +325,7 @@ Transform:
   - {fileID: 747188094527619779}
   - {fileID: 7004334502546692038}
   - {fileID: 4402751051215959763}
+  - {fileID: 1281919806208066967}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95788528626728084
@@ -517,8 +518,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyAnimator: {fileID: 7904801184297561779}
-  _current: 50
-  _max: 50
   _takeDamageEffectPrefab: {fileID: 8771972552311404799, guid: 04eff93b654fb924cabd4c00ea1c01a9, type: 3}
   _takeDamageEffectSpawnPoint: {fileID: 4109509866020900}
 --- !u!114 &915246297364199549
@@ -3519,6 +3518,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f0b1f7cc4a4ac2ab56d8117dba3381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8640802492284142542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1281919806208066967}
+  - component: {fileID: 3189291026118869902}
+  m_Layer: 0
+  m_Name: LootSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1281919806208066967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8640802492284142542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4993600282217460}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3189291026118869902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8640802492284142542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b1eb7e6cfab4d74b57c72a198024bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyDeath: {fileID: 915246297364199549}
 --- !u!1001 &5154311111993635285
 PrefabInstance:
   m_ObjectHideFlags: 0

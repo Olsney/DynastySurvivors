@@ -94,7 +94,10 @@ namespace Code.Infrastructure.Factory
             enemy.GetComponent<ActorUI>().Construct(health);
             enemy.GetComponent<EnemyMoveToHero>().Construct(HeroGameObject.transform);
             enemy.GetComponent<NavMeshAgent>().speed = enemyData.MoveSpeed;
-            
+
+            LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
+            lootSpawner.Construct(this);
+
             switch (enemyTypeId)
             {
                 case EnemyTypeId.Skeleton:
@@ -131,7 +134,12 @@ namespace Code.Infrastructure.Factory
                 enemyData.AttackCooldown
                 );
         }
-        
+
+        public GameObject CreateLoot()
+        {
+            return InstantiateRegistered(AssetPath.Loot);
+        }
+
         private GameObject InstantiateRegistered(GameObject prefab, Vector3 at)
         {
             GameObject instance = _container.InstantiatePrefab(prefab, at, Quaternion.identity, null);

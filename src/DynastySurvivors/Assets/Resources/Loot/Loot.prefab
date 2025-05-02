@@ -528,21 +528,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4431843793699728}
     m_Modifications:
-    - target: {fileID: 3201194792376036025, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3201194792376036025, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 96e6287e4c3f48e4289b4484f69411a4, type: 2}
     - target: {fileID: 6290650440986125196, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
       propertyPath: m_Name
       value: PopupText
-      objectReference: {fileID: 0}
-    - target: {fileID: 6290650440986125196, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6404493036876121017, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
       propertyPath: m_Pivot.x
@@ -575,14 +563,6 @@ PrefabInstance:
     - target: {fileID: 6404493036876121017, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6404493036876121017, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6404493036876121017, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6404493036876121017, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -630,10 +610,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6404493036876121017, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6404493036876121017, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

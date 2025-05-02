@@ -8,6 +8,7 @@ namespace Code.Enemy
     [RequireComponent(typeof(EnemyHealth), typeof(EnemyAnimator), typeof(EnemyMoveToHero))]
     public class EnemyDeath : MonoBehaviour
     {
+        private const float DelayBeforeDestroy = 3f;
         public event Action Died;
         
         [SerializeField] private EnemyHealth _health;
@@ -38,22 +39,25 @@ namespace Code.Enemy
             _animator.PlayDeath();
 
             SpawnDeathFx();
-            StartCoroutine(DestroyAfterDelay());
+            StartCoroutine(DestroyAfterDelay(gameObject));
 
             Died?.Invoke();
         }
 
-        private void SpawnDeathFx() => 
-            Instantiate(_deathFx, transform.position, Quaternion.identity);
-
-        private IEnumerator DestroyAfterDelay()
+        private void SpawnDeathFx()
         {
-            float delayBeforeDestroy = 3f;
-            WaitForSeconds wait = new WaitForSeconds(delayBeforeDestroy);
+            GameObject deathEffect = Instantiate(_deathFx, transform.position, Quaternion.identity);
+            
+            Destroy(deathEffect, DelayBeforeDestroy);
+        }
+
+        private IEnumerator DestroyAfterDelay(GameObject obj)
+        {
+            WaitForSeconds wait = new WaitForSeconds(DelayBeforeDestroy);
             
             yield return wait;
             
-            Destroy(gameObject);
+            Destroy(obj);
         }
     }
 }

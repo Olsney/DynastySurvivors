@@ -10,7 +10,7 @@ namespace Code.Enemy
 {
     public class LootPiece : MonoBehaviour
     {
-        private const float LootDestroyingDelay = 1.5f;
+        private const float DestroyingDelay = 1.5f;
         [SerializeField] private TriggerObserver _triggerObserver;
         [SerializeField] private GameObject _lootPickUpFx;
         [SerializeField] private GameObject _lootVisual;
@@ -33,15 +33,15 @@ namespace Code.Enemy
         
         private void Start()
         {
-            _triggerObserver.Entered += OnTriggerEnter;
+            _triggerObserver.Entered += OnEntered;
         }
 
         private void OnDestroy()
         {
-            _triggerObserver.Entered -= OnTriggerEnter;
+            _triggerObserver.Entered -= OnEntered;
         }
 
-        private void OnTriggerEnter(Collider other) => 
+        private void OnEntered(Collider other) => 
             PickUp();
 
         private void PickUp()
@@ -56,7 +56,7 @@ namespace Code.Enemy
             SpawnPickUpFx();
             ShowLootPopupText();
             
-            StartCoroutine(DestroyLootAfterDelay(LootDestroyingDelay));
+            StartCoroutine(DestroyLootAfterDelay(DestroyingDelay));
         }
 
         private void UpdateLootData() => 
@@ -65,8 +65,12 @@ namespace Code.Enemy
         private void HideLootVisual() => 
             _lootVisual.SetActive(false);
 
-        private void SpawnPickUpFx() => 
-            Instantiate(_lootPickUpFx, transform.position, Quaternion.identity);
+        private void SpawnPickUpFx()
+        {
+            GameObject pickUpFx = Instantiate(_lootPickUpFx, transform.position + Vector3.up, Quaternion.identity);
+            
+            Destroy(pickUpFx, DestroyingDelay);
+        }
 
         private void ShowLootPopupText()
         {

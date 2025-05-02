@@ -6,6 +6,7 @@ namespace Code.Enemy
 {
     public class EnemyHealth : MonoBehaviour, IHealth, IDamageable
     {
+        private const float EffectDestroyDelay = 3f;
         public event Action Changed;
 
         [SerializeField]
@@ -31,8 +32,6 @@ namespace Code.Enemy
 
         public void TakeDamage(float damage)
         {
-            float effectVisualDiration = 3f;
-            
             if (damage < 0)
                 damage = 0;
             
@@ -41,8 +40,14 @@ namespace Code.Enemy
             
             Changed?.Invoke();
             
+            SpawnDamageEffect();
+        }
+
+        private void SpawnDamageEffect()
+        {
             GameObject damageEffect = Instantiate(_takeDamageEffectPrefab, _takeDamageEffectSpawnPoint.position, Quaternion.identity);
-            Destroy(damageEffect, effectVisualDiration);
+            
+            Destroy(damageEffect, EffectDestroyDelay);
         }
     }
 }

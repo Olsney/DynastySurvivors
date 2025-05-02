@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerObserver: {fileID: 1883304916119090411}
-  _lootPickUpFx: {fileID: 3637056596844232284}
+  _lootPickUpFx: {fileID: 1497030318103322, guid: d29b0db146a730e409edfe48f4a2ec51, type: 3}
   _lootVisual: {fileID: 8028848173940404965}
   _lootPopupText: {fileID: 7629511551643821802}
   _lootPopup: {fileID: 2456589347856936656}
@@ -271,11 +271,6 @@ PrefabInstance:
 --- !u!4 &3634045725680615420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4794637815487418, guid: 4d8d0e19aa3e2494496a9f90d2af0238, type: 3}
-  m_PrefabInstance: {fileID: 3638822633852216390}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3637056596844232284 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1928902185163290, guid: 4d8d0e19aa3e2494496a9f90d2af0238, type: 3}
   m_PrefabInstance: {fileID: 3638822633852216390}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4303575136533255788
@@ -543,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6290650440986125196, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6404493036876121017, guid: 189170bebabc31748a4e63f6dd80702d, type: 3}
       propertyPath: m_Pivot.x

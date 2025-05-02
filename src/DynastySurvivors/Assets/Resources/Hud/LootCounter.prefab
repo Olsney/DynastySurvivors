@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5524082680712376719}
   - component: {fileID: 5847964051390196435}
   m_Layer: 0
-  m_Name: Loot
+  m_Name: LootCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

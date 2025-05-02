@@ -5,6 +5,7 @@ using Code.Hero;
 using Code.Infrastructure.AssetManagement;
 using Code.Logic;
 using Code.Services.PersistentProgress;
+using Code.Services.Random;
 using Code.Services.StaticData;
 using Code.Services.StaticData.Enemy;
 using Code.Services.StaticData.Hero;
@@ -21,7 +22,9 @@ namespace Code.Infrastructure.Factory
         private readonly IAssetProvider _assets;
         private readonly IInstantiator _container;
         private readonly IStaticDataService _staticData;
-        
+        private readonly IRandomService _randomService;
+        private readonly IPersistentProgressService _persistentProgressService;
+
         private GameObject _heroGameObject;
 
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
@@ -30,11 +33,18 @@ namespace Code.Infrastructure.Factory
 
         public GameObject HeroGameObject => _heroGameObject;
 
-        public GameFactory(IAssetProvider assets, IInstantiator container, IStaticDataService staticData)
+        public GameFactory(
+            IAssetProvider assets, 
+            IInstantiator container, 
+            IStaticDataService staticData, 
+            IRandomService randomService,
+            IPersistentProgressService persistentProgressService)
         {
             _assets = assets;
             _container = container;
             _staticData = staticData;
+            _randomService = randomService;
+            _persistentProgressService = persistentProgressService;
         }
 
 
@@ -96,7 +106,8 @@ namespace Code.Infrastructure.Factory
             enemy.GetComponent<NavMeshAgent>().speed = enemyData.MoveSpeed;
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
-            lootSpawner.Construct(this);
+            lootSpawner.SetLoot(enemyData.MinLootValue, enemyData.MaxLootValue);
+            lootSpawner.Construct(this, _randomService);
 
             switch (enemyTypeId)
             {
@@ -135,9 +146,12 @@ namespace Code.Infrastructure.Factory
                 );
         }
 
-        public GameObject CreateLoot()
+        public LootPiece CreateLoot()
         {
-            return InstantiateRegistered(AssetPath.Loot);
+            LootPiece lootPiece = InstantiateRegistered(AssetPath.Loot)
+                .GetComponent<LootPiece>();
+            lootPiece.Construct(_persistentProgressService.Progress.WorldData);
+            return lootPiece;
         }
 
         private GameObject InstantiateRegistered(GameObject prefab, Vector3 at)

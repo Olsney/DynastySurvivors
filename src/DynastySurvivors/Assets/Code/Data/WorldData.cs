@@ -9,6 +9,7 @@ namespace Code.Data
     {
         public PositionOnLevel PositionOnLevel;
         [FormerlySerializedAs("VisitedTriggerIDs")] [FormerlySerializedAs("TriggerIDs")] public List<int> VisitedTriggerIds;
+        public LootData LootData;
 
         public WorldData(string initialLevel)
         {

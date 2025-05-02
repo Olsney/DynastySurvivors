@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Code.Enemy;
 using Code.Infrastructure.Services;
 using Code.Services.PersistentProgress;
 using Code.Services.StaticData;
@@ -23,6 +24,6 @@ namespace Code.Infrastructure.Factory
 
         GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform container);
         GameObject CreateHero(HeroTypeId heroTypeId, Vector3 at);
-        GameObject CreateLoot();
+        LootPiece CreateLoot();
     }
 }

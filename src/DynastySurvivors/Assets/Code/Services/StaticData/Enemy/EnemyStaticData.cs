@@ -20,6 +20,16 @@ namespace Code.Services.StaticData.Enemy
         [MinValue(1), Tooltip("Initial health of the enemy.")]
         [GUIColor(0.7f, 1f, 0.7f)]
         public float Health = 50f;
+        
+        [BoxGroup("Basic Info"), LabelWidth(120)]
+        [MinValue(1), Tooltip("Initial health of the enemy.")]
+        [GUIColor(0.7f, 1f, 0.7f)]
+        public int MaxLootValue = 15;
+        
+        [BoxGroup("Basic Info"), LabelWidth(120)]
+        [MinValue(1), Tooltip("Initial health of the enemy.")]
+        [GUIColor(0.7f, 1f, 0.7f)]
+        public int MinLootValue = 1;
 
         [BoxGroup("Movement"), LabelWidth(120)]
         [MinValue(0), Tooltip("Speed at which the enemy moves.")]

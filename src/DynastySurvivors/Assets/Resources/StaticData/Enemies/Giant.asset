@@ -16,9 +16,9 @@ MonoBehaviour:
   Prefab: {fileID: 1314014854321362, guid: b3a86cee233332d408f4a6849786897d, type: 3}
   Health: 50
   MoveSpeed: 2.5
-  AttackCooldown: 3
-  AttackCleavage: 0.5
-  AttackOffsetY: 0.5
-  AttackOffsetForward: 0.5
+  AttackCooldown: 0.2
+  AttackCleavage: 0.1
+  AttackOffsetY: 1
+  AttackOffsetForward: 1
   EffectiveDistance: 0.5
   Damage: 15

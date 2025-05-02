@@ -1,16 +1,17 @@
 using System;
+using UnityEngine.Serialization;
 
 namespace Code.Data
 {
     [Serializable]
     public class LootData
     {
-        public int Collected;
+        public int LootValue;
         public Action Changed;
 
         public void Collect(Loot loot)
         {
-            Collected += loot.Value;
+            LootValue += loot.Value;
             Changed?.Invoke();
         }
     }

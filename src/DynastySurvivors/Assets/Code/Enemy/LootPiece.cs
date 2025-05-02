@@ -2,6 +2,7 @@
 using System.Collections;
 using Code.Data;
 using Code.Logic;
+using Code.Services.PersistentProgress;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;

@@ -86,7 +86,12 @@ namespace Code.Infrastructure.States
             
             foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
             {
-                _gameFactory.CreateEnemySpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyTypeId);
+                _gameFactory.CreateEnemySpawner(
+                    spawnerData.Position, 
+                    spawnerData.Id, 
+                    spawnerData.EnemyTypeId, 
+                    levelData.MinSpawnInterval, 
+                    levelData.MaxSpawnInterval);
             }
         }
 

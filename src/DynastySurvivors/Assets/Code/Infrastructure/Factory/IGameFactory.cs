@@ -23,6 +23,6 @@ namespace Code.Infrastructure.Factory
         GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform container);
         GameObject CreateHero(HeroTypeId heroTypeId, Vector3 at);
         LootPiece CreateLoot();
-        void CreateEnemySpawner(Vector3 at, string spawnerId, EnemyTypeId enemyTypeId);
+        void CreateEnemySpawner(Vector3 at, string spawnerId, EnemyTypeId enemyTypeId, float minSpawnInterval, float maxSpawnInterval);
     }
 }

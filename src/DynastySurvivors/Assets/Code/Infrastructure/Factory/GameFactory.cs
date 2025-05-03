@@ -167,13 +167,13 @@ namespace Code.Infrastructure.Factory
             return lootPiece;
         }
 
-        public void CreateEnemySpawner(Vector3 at, string spawnerId, EnemyTypeId enemyTypeId)
+        public void CreateEnemySpawner(Vector3 at, string spawnerId, EnemyTypeId enemyTypeId, float minSpawnInterval, float maxSpawnInterval)
         {
             EnemySpawner enemySpawner = InstantiateRegistered(AssetPath.EnemySpawnerPath, at)
                 .GetComponent<EnemySpawner>();
 
-            enemySpawner.Construct(identifier: _identifierService, factory: this);
-            enemySpawner.Initialize(enemyTypeId);
+            // enemySpawner.Construct(identifier: _identifierService, factory: this);
+            enemySpawner.Initialize(enemyTypeId, minSpawnInterval, maxSpawnInterval);
         }
 
         private GameObject InstantiateRegistered(GameObject prefab, Vector3 at)

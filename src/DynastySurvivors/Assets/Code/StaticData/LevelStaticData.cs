@@ -8,5 +8,7 @@ namespace Code.StaticData
     {
         public string LevelKey;
         public List<EnemySpawnerData> EnemySpawners;
+        public float MinSpawnInterval = 10f;
+        public float MaxSpawnInterval = 60f;
     }
 }

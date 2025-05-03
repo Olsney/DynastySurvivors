@@ -56,3 +56,5 @@ MonoBehaviour:
   - Id: Main_5a87f226-a8b6-4592-ab3a-c017e091ce04
     EnemyTypeId: 0
     Position: {x: -18.776836, y: -14.49, z: -269.3528}
+  MinSpawnInterval: 10
+  MaxSpawnInterval: 60

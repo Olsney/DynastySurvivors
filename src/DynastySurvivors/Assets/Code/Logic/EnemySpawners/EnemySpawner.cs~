@@ -34,7 +34,7 @@ namespace Code.Logic.EnemySpawners
             Id = _identifier.Next();
         }
 
-        public void Initialize(EnemyTypeId enemyTypeId, float minSpawnInterval, float maxSpawnInterval)
+        public void Initialize(EnemyTypeId enemyTypeId, int minSpawnInterval, int maxSpawnInterval)
         {
             _enemyTypeId = enemyTypeId;
             _minSpawnInterval = minSpawnInterval;

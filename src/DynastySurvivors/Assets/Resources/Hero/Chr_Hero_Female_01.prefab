@@ -1071,7 +1071,6 @@ GameObject:
   - component: {fileID: 2456738757525674475}
   - component: {fileID: -6827540669886519875}
   - component: {fileID: 107315249724337815}
-  - component: {fileID: 5981377735415942871}
   m_Layer: 3
   m_Name: Chr_Hero_Female_01
   m_TagString: Untagged
@@ -1166,7 +1165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 4833521822157380319}
-  _movementSpeed: 4
 --- !u!114 &8723237862922046338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,19 +1246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _heroAnimator: {fileID: 8723237862922046338}
   _characterController: {fileID: 4833521822157380319}
-  _cooldown: {fileID: 5981377735415942871}
---- !u!114 &5981377735415942871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3349932211548729735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3267c74c7d634c94904d077d0302724e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3379887114862934720
 GameObject:
   m_ObjectHideFlags: 0

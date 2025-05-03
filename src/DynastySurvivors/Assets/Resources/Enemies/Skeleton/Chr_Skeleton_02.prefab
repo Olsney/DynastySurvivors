@@ -283,7 +283,6 @@ GameObject:
   - component: {fileID: 6845193668131832341}
   - component: {fileID: 640092239959802985}
   - component: {fileID: 1450503239088332649}
-  - component: {fileID: 4404823071695940292}
   - component: {fileID: 5777646232455234005}
   - component: {fileID: 6038218408897385941}
   - component: {fileID: 7070559481041269718}
@@ -443,25 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329d84187d4545c7b767e11107a98d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: {fileID: 4404823071695940292}
   _enemyAnimator: {fileID: 7904801184297561779}
-  _attackDamage: 50
-  _attackCooldown: 3
-  _attackOffsetY: 0.5
-  _attackOffsetForward: 0.5
-  _attackCleavage: 0.5
---- !u!114 &4404823071695940292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1064298965650098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3267c74c7d634c94904d077d0302724e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5777646232455234005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,9 +470,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackZone: {fileID: 4275001398118462384}
-  _attackDamage: 1
-  _attackCooldown: 0.2
-  _cooldown: {fileID: 4404823071695940292}
 --- !u!114 &7070559481041269718
 MonoBehaviour:
   m_ObjectHideFlags: 0

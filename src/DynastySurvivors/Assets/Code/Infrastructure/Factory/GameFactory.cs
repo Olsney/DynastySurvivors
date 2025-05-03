@@ -169,8 +169,8 @@ namespace Code.Infrastructure.Factory
 
         public void CreateSpawner(Vector3 at, string spawnerId, EnemyTypeId enemyTypeId)
         {
-            SpawnPoint spawner = InstantiateRegistered(AssetPath.EnemySpawnerPath, at)
-                .GetComponent<SpawnPoint>();
+            Spawner spawner = InstantiateRegistered(AssetPath.EnemySpawnerPath, at)
+                .GetComponent<Spawner>();
 
             spawner.Construct(identifier: _identifierService, factory: this);
         }

@@ -15,11 +15,11 @@ namespace Code.Editor
             CircleGizmo(spawnPoint.transform, CircleGizmoRadius, Color.blue);
         }
 
-        private static void CircleGizmo(Transform transform, float radius, Color color)
+        private static void CircleGizmo(Transform spawnPointTransform, float radius, Color color)
         {
             Gizmos.color = color;
 
-            Vector3 position = transform.position;
+            Vector3 position = spawnPointTransform.position;
             
             Gizmos.DrawSphere(position, radius);
         }

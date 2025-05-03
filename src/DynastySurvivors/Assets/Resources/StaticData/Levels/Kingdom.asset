@@ -13,4 +13,46 @@ MonoBehaviour:
   m_Name: Kingdom
   m_EditorClassIdentifier: 
   LevelKey: Main
-  EnemySpawners: []
+  EnemySpawners:
+  - Id: Main_4c5d4d2b-9d46-4b99-be74-d3046a9aca17
+    EnemyTypeId: 0
+    Position: {x: 26.64, y: -18.621, z: -345.57}
+  - Id: Main_7cfb25b9-112e-4332-9d5e-1c17d0052a95
+    EnemyTypeId: 0
+    Position: {x: 21.66, y: -18.621, z: -366.66}
+  - Id: Main_16c842b8-9388-4ec0-9350-1d9c6ea2e7b5
+    EnemyTypeId: 0
+    Position: {x: -37.28315, y: -19.068, z: -335.19617}
+  - Id: Main_505de06b-2967-4b9c-9ded-1634a28f568f
+    EnemyTypeId: 10
+    Position: {x: -28.24, y: -19.64, z: -278.58}
+  - Id: Main_fdf7695d-7a30-4675-8444-dac29c6ac608
+    EnemyTypeId: 10
+    Position: {x: 35.638573, y: -19.529, z: -308.91}
+  - Id: Main_2ffa265a-4674-4052-a7b9-4f3b7a5ed422
+    EnemyTypeId: 10
+    Position: {x: -32.84008, y: -18.57, z: -345.7146}
+  - Id: Main_def6506f-048a-499d-873b-4e15f4707bd7
+    EnemyTypeId: 0
+    Position: {x: 8.364, y: -16.88, z: -366.66}
+  - Id: Main_086be42e-e2e2-41df-93f9-311db8623db4
+    EnemyTypeId: 0
+    Position: {x: -19.61, y: -18.14, z: -363.231}
+  - Id: Main_879ec41c-1ad2-4e4d-9fc9-db18dbbbe6b7
+    EnemyTypeId: 0
+    Position: {x: -40.1, y: -19.41, z: -312.7}
+  - Id: Main_65da7cd7-510c-459c-82ad-033d925bdd74
+    EnemyTypeId: 10
+    Position: {x: -3.86, y: -14.43, z: -268.51}
+  - Id: Main_d581cc93-6df5-446e-8b93-897220f499df
+    EnemyTypeId: 0
+    Position: {x: 20.98713, y: -19.598, z: -279.66882}
+  - Id: Main_bf55a3f6-5e4b-4052-adfe-024fe63bb6fe
+    EnemyTypeId: 0
+    Position: {x: -44.966393, y: -19.545, z: -328.4413}
+  - Id: Main_5fe8483a-0741-4583-965d-927a2b1005dd
+    EnemyTypeId: 0
+    Position: {x: 10.17, y: -14.43, z: -270.11414}
+  - Id: Main_5a87f226-a8b6-4592-ab3a-c017e091ce04
+    EnemyTypeId: 0
+    Position: {x: -18.776836, y: -14.49, z: -269.3528}

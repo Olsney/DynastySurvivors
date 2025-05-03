@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Code.Enemy;
 using Code.Hero;
 using Code.Infrastructure.AssetManagement;
+using Code.Infrastructure.Services.Identifiers;
 using Code.Logic;
+using Code.Logic.EnemySpawners;
 using Code.Services.PersistentProgress;
 using Code.Services.Random;
 using Code.Services.StaticData;
@@ -24,6 +26,7 @@ namespace Code.Infrastructure.Factory
         private readonly IStaticDataService _staticData;
         private readonly IRandomService _randomService;
         private readonly IPersistentProgressService _persistentProgressService;
+        private readonly IIdentifierService _identifierService;
 
         private GameObject _heroGameObject;
 
@@ -38,13 +41,16 @@ namespace Code.Infrastructure.Factory
             IInstantiator container, 
             IStaticDataService staticData, 
             IRandomService randomService,
-            IPersistentProgressService persistentProgressService)
+            IPersistentProgressService persistentProgressService, 
+            IIdentifierService identifierService
+            )
         {
             _assets = assets;
             _container = container;
             _staticData = staticData;
             _randomService = randomService;
             _persistentProgressService = persistentProgressService;
+            _identifierService = identifierService;
         }
 
 
@@ -163,10 +169,10 @@ namespace Code.Infrastructure.Factory
 
         public void CreateSpawner(Vector3 at, string spawnerId, EnemyTypeId enemyTypeId)
         {
-            EnemySpawner spawner = InstantiateRegistered(AssetPath.EnemySpawnerPath, at)
-                .GetComponent<EnemySpawner>();
+            SpawnPoint spawner = InstantiateRegistered(AssetPath.EnemySpawnerPath, at)
+                .GetComponent<SpawnPoint>();
 
-            // spawner.Id = spawnerId;
+            spawner.Construct(identifier: _identifierService, factory: this);
         }
 
         private GameObject InstantiateRegistered(GameObject prefab, Vector3 at)

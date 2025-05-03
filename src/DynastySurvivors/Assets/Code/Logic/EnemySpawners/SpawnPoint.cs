@@ -1,16 +1,13 @@
 ﻿using Code.Data;
-using Code.Enemy;
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.Services.Identifiers;
 using Code.Services.PersistentProgress;
-using Code.Services.StaticData;
 using Code.Services.StaticData.Enemy;
 using UnityEngine;
-using Zenject;
 
-namespace Code.Logic
+namespace Code.Logic.EnemySpawners
 {
-    public class EnemySpawner : MonoBehaviour, ISavedProgressReader
+    public class SpawnPoint : MonoBehaviour, ISavedProgressReader
     {
         [SerializeField] private EnemyTypeId _enemyTypeId;
         
@@ -19,8 +16,7 @@ namespace Code.Logic
 
         [field: SerializeField] public int Id { get; private set; }
 
-        [Inject]
-        private void Construct(IIdentifierService identifier, IGameFactory factory)
+        public void Construct(IIdentifierService identifier, IGameFactory factory)
         {
             _identifier = identifier;
             _factory = factory;

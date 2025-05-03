@@ -10,6 +10,7 @@ namespace Code.Services.StaticData.Enemy
         EnemyStaticData GetEnemy(EnemyTypeId typeId);
         void LoadAllHeroes();
         HeroStaticData GetHero(HeroTypeId typeId);
+        void LoadAllLevels();
         LevelStaticData GetLevel(string sceneKey);
     }
 }

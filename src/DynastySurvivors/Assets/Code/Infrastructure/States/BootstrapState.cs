@@ -27,6 +27,7 @@ namespace Code.Infrastructure.States
             _sceneLoader.Load(Initial, onLoaded: EnterLoadLevel);
             _staticData.LoadAllEnemies();
             _staticData.LoadAllHeroes();
+            _staticData.LoadAllLevels();
         }
 
         private void EnterLoadLevel() => 

@@ -4,9 +4,12 @@ using Code.Infrastructure.Factory;
 using Code.Logic;
 using Code.Logic.Curtain;
 using Code.Services.PersistentProgress;
+using Code.Services.StaticData.Enemy;
 using Code.Services.StaticData.Hero;
+using Code.StaticData;
 using Code.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Code.Infrastructure.States
 {
@@ -17,29 +20,32 @@ namespace Code.Infrastructure.States
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
-        private readonly LoadingCurtainProvider _loadingCurtain;
+        private readonly LoadingCurtainProvider _loadingCurtainProvider;
         private readonly IPersistentProgressService _persistentProgressService;
+        private readonly IStaticDataService _staticDataService;
         private readonly IGameFactory _gameFactory;
 
         public LoadLevelState(
             GameStateMachine stateMachine,
             SceneLoader sceneLoader,
             IGameFactory gameFactory,
-            LoadingCurtainProvider loadingCurtain,
-            IPersistentProgressService persistentProgressService)
+            LoadingCurtainProvider loadingCurtainProvider,
+            IPersistentProgressService persistentProgressService,
+            IStaticDataService staticDataService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             // _curtain = curtain;
             _gameFactory = gameFactory;
-            _loadingCurtain = loadingCurtain;
+            _loadingCurtainProvider = loadingCurtainProvider;
             _persistentProgressService = persistentProgressService;
+            _staticDataService = staticDataService;
         }
 
         public void Enter(string sceneName)
         {
             // _curtain.Show();
-            _loadingCurtain.Instance.Show();
+            _loadingCurtainProvider.Instance.Show();
             _gameFactory.Cleanup();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
@@ -47,7 +53,7 @@ namespace Code.Infrastructure.States
         public void Exit()
         {
             // _curtain.Hide();
-            _loadingCurtain.Instance.Hide();
+            _loadingCurtainProvider.Instance.Hide();
         }
 
         private void OnLoaded()
@@ -75,10 +81,12 @@ namespace Code.Infrastructure.States
 
         private void InitSpawners()
         {
-            foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(EnemySpawnerTag))
+            string sceneKey = SceneManager.GetActiveScene().name;
+            LevelStaticData levelData = _staticDataService.GetLevel(sceneKey);
+            
+            foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
             {
-                EnemySpawner spawner = spawnerObject.GetComponent<EnemySpawner>();
-                _gameFactory.Register(spawner);
+                _gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyTypeId);
             }
         }
 

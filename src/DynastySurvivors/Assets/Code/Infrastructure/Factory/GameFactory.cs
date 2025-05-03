@@ -155,10 +155,18 @@ namespace Code.Infrastructure.Factory
 
         public LootPiece CreateLoot()
         {
-            LootPiece lootPiece = InstantiateRegistered(AssetPath.Loot)
+            LootPiece lootPiece = InstantiateRegistered(AssetPath.LootPath)
                 .GetComponent<LootPiece>();
             lootPiece.Construct(_persistentProgressService.Progress.WorldData);
             return lootPiece;
+        }
+
+        public void CreateSpawner(Vector3 at, string spawnerId, EnemyTypeId enemyTypeId)
+        {
+            EnemySpawner spawner = InstantiateRegistered(AssetPath.EnemySpawnerPath, at)
+                .GetComponent<EnemySpawner>();
+
+            // spawner.Id = spawnerId;
         }
 
         private GameObject InstantiateRegistered(GameObject prefab, Vector3 at)

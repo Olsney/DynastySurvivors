@@ -20,10 +20,9 @@ namespace Code.Infrastructure.Factory
         List<ISavedProgress> ProgressWriters { get; }
         void Cleanup();
         GameObject CreateSaveTriggerContainer();
-        void Register(ISavedProgressReader progressReader);
-
         GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform container);
         GameObject CreateHero(HeroTypeId heroTypeId, Vector3 at);
         LootPiece CreateLoot();
+        void CreateSpawner(Vector3 at, string spawnerId, EnemyTypeId enemyTypeId);
     }
 }

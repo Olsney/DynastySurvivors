@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace Code.Editor
 {
-    [CustomEditor(typeof(SpawnPoint))]
+    [CustomEditor(typeof(EnemySpawnPoint))]
     public class SpawnPointEditor : UnityEditor.Editor
     {
         private const float CircleGizmoRadius = 0.5f;
 
         [DrawGizmo(GizmoType.Active | GizmoType.Pickable | GizmoType.NonSelected)]
-        public static void RenderCustomGizmo(SpawnPoint spawnPoint, GizmoType gizmo)
+        public static void RenderCustomGizmo(EnemySpawnPoint enemySpawnPoint, GizmoType gizmo)
         {
-            CircleGizmo(spawnPoint.transform, CircleGizmoRadius, Color.blue);
+            CircleGizmo(enemySpawnPoint.transform, CircleGizmoRadius, Color.blue);
         }
 
         private static void CircleGizmo(Transform spawnPointTransform, float radius, Color color)

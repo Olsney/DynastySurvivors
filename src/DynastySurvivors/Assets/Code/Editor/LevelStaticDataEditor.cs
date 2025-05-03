@@ -20,7 +20,7 @@ namespace Code.Editor
             if (GUILayout.Button("Collect"))
             {
                 levelData.EnemySpawners = 
-                    FindObjectsOfType<SpawnPoint>()
+                    FindObjectsOfType<EnemySpawnPoint>()
                         .Select(x => new EnemySpawnerData(x.GetComponent<UniqueId>().Id, x.EnemyTypeId, x.transform.position))
                         .ToList();
 

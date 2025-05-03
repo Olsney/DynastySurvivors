@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.Logic.EnemySpawners
 {
-    public class SpawnPoint : MonoBehaviour
+    public class EnemySpawnPoint : MonoBehaviour
     {
         [SerializeField] private EnemyTypeId _enemyTypeId;
         

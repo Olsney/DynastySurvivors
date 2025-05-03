@@ -17,7 +17,7 @@ MonoBehaviour:
   Health: 50
   MaxLootValue: 5
   MinLootValue: 1
-  MoveSpeed: 2.5
+  MoveSpeed: 2
   AttackCooldown: 0.2
   AttackCleavage: 0.5
   AttackOffsetY: 0.5

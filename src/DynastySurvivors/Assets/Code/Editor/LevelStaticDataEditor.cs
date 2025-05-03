@@ -21,7 +21,7 @@ namespace Code.Editor
                 var levelData = (LevelStaticData)target;
 
                 levelData.EnemySpawners = 
-                    FindObjectsOfType<EnemySpawnPoint>()
+                    FindObjectsByType<EnemySpawnPoint>(FindObjectsSortMode.None)
                         .Select(x => new EnemySpawnerData(
                             x.GetComponent<UniqueId>().Id,
                             x.EnemyTypeId,

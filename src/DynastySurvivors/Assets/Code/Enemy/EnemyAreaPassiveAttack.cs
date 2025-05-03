@@ -1,17 +1,18 @@
 ﻿using Code.Infrastructure.Factory;
 using Code.Logic;
+using Code.Services.Times;
 using UnityEngine;
 using Zenject;
 
 namespace Code.Enemy
 {
-    [RequireComponent(typeof(Cooldown))]
     public class EnemyAreaPassiveAttack : EnemyAttack
     {
         [SerializeField] private TriggerObserver _attackZone;
-        [SerializeField] private float _attackDamage = 1f;
-        [SerializeField] private float _attackCooldown = 0.5f;
-        [SerializeField] private Cooldown _cooldown;
+        private float _attackDamage;
+        private float _attackCooldown;
+        
+        private ICooldownService _cooldown;
 
         private IDamageable _target;
         private bool _isAttackEnabled;
@@ -20,6 +21,8 @@ namespace Code.Enemy
         {
             _attackDamage = attackDamage;
             _attackCooldown = attackCooldown;
+
+            _cooldown = new CooldownService(_attackCooldown);
         }
 
         private void Awake()
@@ -45,14 +48,19 @@ namespace Code.Enemy
 
         private void Update()
         {
+            UpdateCooldown();
+            
             if (CanAttack()) 
                 Attack();
         }
 
+        private void UpdateCooldown() => 
+            _cooldown.Tick(Time.deltaTime);
+
         private void Attack()
         {
             _target.TakeDamage(_attackDamage);
-            _cooldown.SetCooldown(_attackCooldown);
+            _cooldown.PutOnCooldown();
         }
 
         private void OnZoneEntered(Collider other)

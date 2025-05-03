@@ -8,7 +8,6 @@
         public CooldownService(float delayDuration)
         {
             _delayDuration = delayDuration;
-            _timeLeft = delayDuration;
         }
 
         public bool IsReady => _timeLeft <= 0f;
@@ -21,7 +20,7 @@
                 _timeLeft -= deltaTime;
         }
 
-        private bool IsOnCooldown() => 
+        public bool IsOnCooldown() => 
             _timeLeft > 0f;
 
         public void PutOnCooldown()
@@ -32,6 +31,7 @@
         public void SetCooldown(float newDelay)
         {
             _delayDuration = newDelay;
+            _timeLeft = _delayDuration;
         }
     }
 }

@@ -8,5 +8,6 @@
         void Tick(float deltaTime);
         void PutOnCooldown();
         void SetCooldown(float newDelay);
+        bool IsOnCooldown();
     }
 }

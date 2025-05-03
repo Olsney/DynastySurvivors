@@ -9,6 +9,8 @@ using Code.Services.Random;
 using Code.Services.SaveLoad;
 using Code.Services.StaticData;
 using Code.Services.StaticData.Enemy;
+using Code.Services.Times;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -40,7 +42,6 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IRandomService>().To<UnityRandomService>().AsSingle();
-            
         }
 
         private void BindStates()

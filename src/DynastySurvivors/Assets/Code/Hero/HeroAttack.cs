@@ -2,19 +2,20 @@
 using Code.Logic;
 using Code.Services.Input;
 using Code.Services.PersistentProgress;
+using Code.Services.Times;
 using UnityEngine;
 using Zenject;
 
 namespace Code.Hero
 {
-    [RequireComponent(typeof(HeroAnimator), typeof(CharacterController), typeof(Cooldown))]
+    [RequireComponent(typeof(HeroAnimator), typeof(CharacterController))]
     public class HeroAttack : MonoBehaviour, ISavedProgressReader
     {
         private const string HittableLayerMask = "Hittable";
 
         [SerializeField] private HeroAnimator _heroAnimator;
         [SerializeField] private CharacterController _characterController;
-        [SerializeField] private Cooldown _cooldown;
+        private ICooldownService _cooldown;
 
         private static int _hittableLayerMask;
 
@@ -37,6 +38,8 @@ namespace Code.Hero
             _damage = damage;
             _damageRadius = damageRadius;
             _attackCooldown = attackCooldown;
+
+            _cooldown = new CooldownService(_attackCooldown);
         }
 
         private void Awake()
@@ -46,19 +49,24 @@ namespace Code.Hero
 
         private void Update()
         {
-            if (_inputService.IsAttackButtonUp() && !_heroAnimator.IsAttacking && !_cooldown.IsOnCooldown())
+            UpdateCooldown();
+
+            if (_inputService.IsAttackButtonUp() && !_heroAnimator.IsAttacking && _cooldown.IsReady)
             {
                 _heroAnimator.PlayAttack();
-                
-                _cooldown.SetCooldown(_attackCooldown);
+
+                _cooldown.PutOnCooldown();
             }
         }
+
+        private void UpdateCooldown() => 
+            _cooldown.Tick(Time.deltaTime);
 
         public void LoadProgress(PlayerProgress progress)
         {
             if (progress.HeroStats.IsInitialized == false)
                 return;
-            
+
             _stats = progress.HeroStats;
 
             _damage = _stats.Damage;
@@ -69,7 +77,7 @@ namespace Code.Hero
         public void OnAttack()
         {
             int hitCount = GetHitCount();
-            
+
             for (int i = 0; i < hitCount; i++)
             {
                 Collider hit = _hitsBuffer[i];
@@ -115,7 +123,7 @@ namespace Code.Hero
         {
             if (!Application.isPlaying || _stats == null)
                 return;
-        
+
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(GetStartPoint() + transform.forward, _damageRadius);
         }

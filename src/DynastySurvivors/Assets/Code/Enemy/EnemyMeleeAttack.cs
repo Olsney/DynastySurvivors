@@ -1,5 +1,6 @@
 ﻿using Code.Infrastructure.Factory;
 using Code.Logic;
+using Code.Services.Times;
 using UnityEngine;
 using Zenject;
 
@@ -10,20 +11,20 @@ namespace Code.Enemy
     {
         private const string HeroLayerMask = "Hero";
 
-        [SerializeField] private Cooldown _cooldown;
         [SerializeField] private EnemyAnimator _enemyAnimator;
-        [SerializeField] private float _attackDamage = 10f;
-        [SerializeField] private float _attackCooldown = 3f;
-        [SerializeField] private float _attackOffsetY = 0.5f;
-        [SerializeField] private float _attackOffsetForward = 0.5f;
-        [SerializeField] private float _attackCleavage = 0.5f;
+        
+        private float _attackDamage;
+        private float _attackCooldown;
+        private float _attackOffsetY;
+        private float _attackOffsetForward;
+        private float _attackCleavage;
 
         private Transform _heroTransform;
-        private float _attackCooldownTimer;
         private bool _isAttacking;
         private int _heroLayerMask;
         private Collider[] _hitsBuffer = new Collider[1];
         private bool _isAttackEnabled;
+        private ICooldownService _cooldown;
         
         public void Construct(Transform heroTransform)
         {
@@ -37,6 +38,8 @@ namespace Code.Enemy
             _attackOffsetY = attackOffsetY;
             _attackOffsetForward = attackOffsetForward;
             _attackCleavage = attackCleavage;
+
+            _cooldown = new CooldownService(_attackCooldown);
         }
 
         private void Awake()
@@ -58,14 +61,11 @@ namespace Code.Enemy
         public override void DisableAttack() =>
             _isAttackEnabled = false;
 
-        private void UpdateCooldown()
-        {
-            if (IsAttackOnCooldown())
-                _attackCooldownTimer -= Time.deltaTime;
-        }
+        private void UpdateCooldown() => 
+            _cooldown.Tick(Time.deltaTime);
 
         private bool CanAttack() =>
-            _isAttackEnabled && !_isAttacking && !_cooldown.IsOnCooldown();
+            _isAttackEnabled && !_isAttacking && _cooldown.IsReady;
 
         private void StartAttack()
         {
@@ -98,9 +98,6 @@ namespace Code.Enemy
 
             heroHealth.TakeDamage(_attackDamage);
         }
-
-        private bool IsAttackOnCooldown() =>
-            _attackCooldownTimer > 0f;
 
         private bool IsHitted(out Collider hit)
         {

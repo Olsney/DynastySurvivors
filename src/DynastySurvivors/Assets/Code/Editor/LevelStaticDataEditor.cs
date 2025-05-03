@@ -2,6 +2,7 @@ using System.Linq;
 using Code.Logic;
 using Code.Logic.EnemySpawners;
 using Code.StaticData;
+using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,25 +10,28 @@ using UnityEngine.SceneManagement;
 namespace Code.Editor
 {
     [CustomEditor(typeof(LevelStaticData))]
-    public class LevelStaticDataEditor : UnityEditor.Editor
+    public class LevelStaticDataEditor : OdinEditor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            LevelStaticData levelData = (LevelStaticData)target;
-
-            if (GUILayout.Button("Collect"))
+            if (GUILayout.Button("Collect Enemy Spawners"))
             {
+                var levelData = (LevelStaticData)target;
+
                 levelData.EnemySpawners = 
                     FindObjectsOfType<EnemySpawnPoint>()
-                        .Select(x => new EnemySpawnerData(x.GetComponent<UniqueId>().Id, x.EnemyTypeId, x.transform.position))
+                        .Select(x => new EnemySpawnerData(
+                            x.GetComponent<UniqueId>().Id,
+                            x.EnemyTypeId,
+                            x.transform.position))
                         .ToList();
 
                 levelData.LevelKey = SceneManager.GetActiveScene().name;
+
+                EditorUtility.SetDirty(levelData);
             }
-            
-            EditorUtility.SetDirty(target);
         }
     }
 }

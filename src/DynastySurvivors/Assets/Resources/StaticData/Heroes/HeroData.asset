@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HeroType: 0
   Prefab: {fileID: 3349932211548729735, guid: b665b046c62a57a45801776856a15666, type: 3}
-  Damage: 30
+  Damage: 50
   DamageRadius: 1.5
   AttackCooldown: 1.5
   CurrentHealth: 100

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyType: 10
   Prefab: {fileID: 1314014854321362, guid: b3a86cee233332d408f4a6849786897d, type: 3}
-  Health: 50
+  Health: 100
   MaxLootValue: 15
   MinLootValue: 7
   MoveSpeed: 2.5

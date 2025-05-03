@@ -45,12 +45,6 @@ namespace Code.Infrastructure.States
             playerProgress.HeroHealth.IsInitialized = false;
             playerProgress.HeroStats.IsInitialized = false;
 
-            // playerProgress.HeroHealth.MaxHealth = 50f;
-            // playerProgress.HeroStats.Damage = 15f;
-            // playerProgress.HeroStats.DamageRadius = 1.5f;
-            // playerProgress.HeroStats.AttackCooldown = 1.5f;
-            // playerProgress.HeroHealth.ResetHp();
-            
             return playerProgress;
         }
     }

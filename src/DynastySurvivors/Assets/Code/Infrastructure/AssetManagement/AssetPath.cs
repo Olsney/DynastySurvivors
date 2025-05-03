@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Code.Infrastructure.AssetManagement
 {
     public static class AssetPath

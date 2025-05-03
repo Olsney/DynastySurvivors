@@ -1,6 +1,4 @@
-﻿using Code.Infrastructure.Factory;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 namespace Code.Enemy
 {

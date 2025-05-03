@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using Code.Logic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Code.Enemy
 {

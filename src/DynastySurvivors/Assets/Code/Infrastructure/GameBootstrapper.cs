@@ -1,6 +1,5 @@
 using Code.Infrastructure.Factory;
 using Code.Infrastructure.States;
-using Code.Logic;
 using Code.Logic.Curtain;
 using UnityEngine;
 using Zenject;

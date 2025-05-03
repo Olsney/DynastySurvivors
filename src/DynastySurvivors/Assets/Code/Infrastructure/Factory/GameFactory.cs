@@ -115,7 +115,7 @@ namespace Code.Infrastructure.Factory
             health.Initialize(enemyData.Health, enemyData.Health);
             
             enemy.GetComponent<ActorUI>().Construct(health);
-            enemy.GetComponent<EnemyMoveToHero>().Construct(HeroGameObject.transform);
+            enemy.GetComponent<EnemyMoveToHero>().Construct(HeroGameObject.transform, _randomService);
             enemy.GetComponent<NavMeshAgent>().speed = enemyData.MoveSpeed;
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();

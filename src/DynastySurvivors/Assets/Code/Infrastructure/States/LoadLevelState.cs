@@ -1,5 +1,4 @@
 ﻿using Code.CameraLogic;
-using Code.Hero;
 using Code.Infrastructure.Factory;
 using Code.Logic;
 using Code.Logic.Curtain;
@@ -35,7 +34,6 @@ namespace Code.Infrastructure.States
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
-            // _curtain = curtain;
             _gameFactory = gameFactory;
             _loadingCurtainProvider = loadingCurtainProvider;
             _persistentProgressService = persistentProgressService;
@@ -44,7 +42,6 @@ namespace Code.Infrastructure.States
 
         public void Enter(string sceneName)
         {
-            // _curtain.Show();
             _loadingCurtainProvider.Instance.Show();
             _gameFactory.Cleanup();
             _sceneLoader.Load(sceneName, OnLoaded);

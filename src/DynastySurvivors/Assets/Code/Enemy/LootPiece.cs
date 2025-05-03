@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Code.Data;
 using Code.Logic;
-using Code.Services.PersistentProgress;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Code.Enemy
 {

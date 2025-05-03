@@ -1,9 +1,7 @@
-﻿using System;
-using Code.Data;
+﻿using Code.Data;
 using Code.Infrastructure.Factory;
 using Code.Services.Random;
 using UnityEngine;
-using Zenject;
 
 namespace Code.Enemy
 {

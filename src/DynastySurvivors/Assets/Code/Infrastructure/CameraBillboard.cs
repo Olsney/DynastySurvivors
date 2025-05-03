@@ -12,6 +12,7 @@ namespace Code.Infrastructure
         private void Update()
         {
             Quaternion rotation = _mainCamera.transform.rotation;
+            
             transform.LookAt(transform.position + rotation * Vector3.back, rotation * Vector3.up);
         }
     }

@@ -85,25 +85,16 @@ namespace Code.Hero
                 if (hit == null)
                     continue;
 
-                // Определяем направление на цель
                 Vector3 toTarget = (hit.transform.position - transform.position).normalized;
 
-                // Сравниваем с направлением взгляда героя
                 float dot = Vector3.Dot(transform.forward, toTarget);
 
-                // Фильтр: только враги в секторе ~120 градусов (dot >= 0.5)
                 if (dot >= 0.5f)
                 {
                     IDamageable damageable = hit.GetComponentInParent<IDamageable>();
 
-                    if (damageable != null)
-                    {
+                    if (damageable != null) 
                         damageable.TakeDamage(_damage);
-                    }
-                }
-                else
-                {
-                    Debug.Log($"{hit.name} — за пределами фронтального сектора (dot = {dot})");
                 }
             }
 

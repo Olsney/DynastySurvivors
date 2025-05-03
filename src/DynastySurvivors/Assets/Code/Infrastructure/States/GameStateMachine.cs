@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Code.Infrastructure.Factory;
-using Code.Infrastructure.Services;
-using Code.Logic;
-using Code.Logic.Curtain;
+﻿using Code.Infrastructure.Factory;
 
 namespace Code.Infrastructure.States
 {

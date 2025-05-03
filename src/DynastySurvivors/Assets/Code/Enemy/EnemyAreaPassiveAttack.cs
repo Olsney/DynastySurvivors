@@ -1,8 +1,6 @@
-﻿using Code.Infrastructure.Factory;
-using Code.Logic;
+﻿using Code.Logic;
 using Code.Services.Times;
 using UnityEngine;
-using Zenject;
 
 namespace Code.Enemy
 {

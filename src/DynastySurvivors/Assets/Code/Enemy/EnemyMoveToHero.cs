@@ -1,29 +1,32 @@
 ﻿using Code.Data;
 using Code.Infrastructure.Factory;
+using Code.Services.Random;
 using UnityEngine;
 using UnityEngine.AI;
-using Zenject;
-using Random = UnityEngine.Random;
 
 namespace Code.Enemy
 {
     public class EnemyMoveToHero : Follower
     {
         private const float MinDistanceToHero = 0.5f;
+        private const int MinAvoidancePriority = 30;
+        private const int MaxAvoidancePriority = 60;
         
         [SerializeField]
         private NavMeshAgent _agent;
-        
+
         private Transform _heroTransform;
         private IGameFactory _gameFactory;
+        private IRandomService _random;
 
-        public void Construct(Transform heroTransform) => 
-            _heroTransform = heroTransform;
-
-        private void Start()
+        public void Construct(Transform heroTransform, IRandomService random)
         {
-            _agent.avoidancePriority = Random.Range(30, 60);
+            _heroTransform = heroTransform;
+            _random = random;
         }
+
+        private void Start() => 
+            _agent.avoidancePriority = _random.Next(MinAvoidancePriority, MaxAvoidancePriority);
 
         private void Update()
         {

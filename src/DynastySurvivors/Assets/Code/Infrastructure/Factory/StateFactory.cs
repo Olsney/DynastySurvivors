@@ -12,9 +12,7 @@ namespace Code.Infrastructure.Factory
             _container = container;
         }
 
-        public T GetState<T>() where T : class, IExitableState
-        {
-            return _container.Resolve<T>();
-        }
+        public T GetState<T>() where T : class, IExitableState => 
+            _container.Resolve<T>();
     }
 }

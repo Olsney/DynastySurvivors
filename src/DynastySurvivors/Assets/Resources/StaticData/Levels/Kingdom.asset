@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1564d4f3094e0b87c7de93f6d84afc, type: 3}
   m_Name: Kingdom
   m_EditorClassIdentifier: 
-  LevelKey: 
+  LevelKey: Main
   EnemySpawners: []

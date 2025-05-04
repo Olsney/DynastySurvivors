@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Infrastructure
+namespace Code.UI.Elements
 {
     public class CameraBillboard : MonoBehaviour
     {

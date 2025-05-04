@@ -7,6 +7,7 @@ using Code.Services.StaticData.Enemy;
 using Code.Services.StaticData.Hero;
 using Code.StaticData;
 using Code.UI;
+using Code.UI.Elements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

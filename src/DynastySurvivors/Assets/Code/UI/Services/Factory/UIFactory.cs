@@ -2,7 +2,6 @@ using Code.Infrastructure.AssetManagement;
 using Code.Services.StaticData;
 using Code.StaticData.Windows;
 using Code.UI.Services.Windows;
-using Code.UI.Windows;
 using UnityEngine;
 using Zenject;
 
@@ -30,9 +29,6 @@ namespace Code.UI.Services.Factory
             WindowConfig config = _staticData.GetWindow(WindowId.Shop);
             Object.Instantiate(config.Prefab, _uiRoot);
         }
-
-        // public void CreateUIRoot() => 
-        //     _uiRoot = _assets.Load(UIRootPath).transform;
         
         public void CreateUIRoot()
         {

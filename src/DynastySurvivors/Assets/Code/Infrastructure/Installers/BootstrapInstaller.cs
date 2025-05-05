@@ -8,6 +8,7 @@ using Code.Services.PersistentProgress;
 using Code.Services.Random;
 using Code.Services.SaveLoad;
 using Code.Services.StaticData.Enemy;
+using Code.UI.Services.Windows;
 using UnityEngine;
 using Zenject;
 
@@ -39,6 +40,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<IRandomService>().To<UnityRandomService>().AsSingle();
+            Container.Bind<IWindowService>().To<WindowService>().AsSingle();
         }
 
         private void BindStates()

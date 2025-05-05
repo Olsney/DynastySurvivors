@@ -1,5 +1,4 @@
-﻿using System;
-using Code.Data;
+﻿using Code.Data;
 using Code.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.UI;

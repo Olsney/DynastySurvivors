@@ -19,9 +19,7 @@ namespace Code.UI.Windows
             Progress.WorldData.LootData.Changed -= RefreshLootValue;
         }
 
-        private void RefreshLootValue()
-        {
-            _lootValue.text = $"{Progress.WorldData.LootData.LootValue.ToString()}";
-        }
+        private void RefreshLootValue() => 
+            _lootValue.text = Progress.WorldData.LootData.LootValue.ToString();
     }
 }

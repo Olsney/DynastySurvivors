@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
-namespace Code.StaticData
+namespace Code.StaticData.Level
 {
     [CreateAssetMenu(fileName = "LevelData", menuName = "StaticData/LevelData")]
     public class LevelStaticData : ScriptableObject

@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Code.Services.StaticData.Hero
+namespace Code.StaticData.Hero
 {
     [CreateAssetMenu(fileName = "HeroData", menuName = "StaticData/HeroData")]
     [InlineEditor]

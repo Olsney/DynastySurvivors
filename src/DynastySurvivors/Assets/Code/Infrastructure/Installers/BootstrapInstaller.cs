@@ -8,7 +8,6 @@ using Code.Services.PersistentProgress;
 using Code.Services.Random;
 using Code.Services.SaveLoad;
 using Code.Services.StaticData;
-using Code.Services.StaticData.Enemy;
 using Code.UI.Services.Factory;
 using Code.UI.Services.Windows;
 using UnityEngine;

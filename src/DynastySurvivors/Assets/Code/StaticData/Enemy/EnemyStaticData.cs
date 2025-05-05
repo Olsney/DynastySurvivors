@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Code.Services.StaticData.Enemy
+namespace Code.StaticData.Enemy
 {
     [CreateAssetMenu(fileName = "EnemyData", menuName = "StaticData/EnemyData")]
     public class EnemyStaticData : ScriptableObject

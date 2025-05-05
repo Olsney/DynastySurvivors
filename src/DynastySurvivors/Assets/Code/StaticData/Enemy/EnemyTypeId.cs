@@ -1,4 +1,4 @@
-﻿namespace Code.Services.StaticData.Enemy
+﻿namespace Code.StaticData.Enemy
 {
     public enum EnemyTypeId
     {

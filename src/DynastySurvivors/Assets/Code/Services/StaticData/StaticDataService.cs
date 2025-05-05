@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Code.Services.StaticData.Enemy;
-using Code.Services.StaticData.Hero;
 using Code.StaticData;
+using Code.StaticData.Enemy;
+using Code.StaticData.Hero;
+using Code.StaticData.Level;
 using Code.StaticData.Windows;
 using Code.UI.Services.Windows;
 using UnityEngine;

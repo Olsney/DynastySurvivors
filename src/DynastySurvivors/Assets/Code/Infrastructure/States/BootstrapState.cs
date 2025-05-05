@@ -1,5 +1,4 @@
 using Code.Services.StaticData;
-using Code.Services.StaticData.Enemy;
 
 namespace Code.Infrastructure.States
 {

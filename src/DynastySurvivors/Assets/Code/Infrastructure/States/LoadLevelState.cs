@@ -4,11 +4,10 @@ using Code.Logic;
 using Code.Logic.Curtain;
 using Code.Services.PersistentProgress;
 using Code.Services.StaticData;
-using Code.Services.StaticData.Enemy;
-using Code.Services.StaticData.Hero;
-using Code.StaticData;
-using Code.UI;
+using Code.StaticData.Hero;
+using Code.StaticData.Level;
 using Code.UI.Elements;
+using Code.UI.Services.Factory;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +16,6 @@ namespace Code.Infrastructure.States
     public class LoadLevelState : IPayloadedState<string>
     {
         private const string InitialPointTag = "InitialPoint";
-        private const string EnemySpawnerTag = "EnemySpawner";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -25,6 +23,7 @@ namespace Code.Infrastructure.States
         private readonly IPersistentProgressService _persistentProgressService;
         private readonly IStaticDataService _staticDataService;
         private readonly IGameFactory _gameFactory;
+        private readonly IUIFactory _uiFactory;
 
         public LoadLevelState(
             GameStateMachine stateMachine,
@@ -32,7 +31,7 @@ namespace Code.Infrastructure.States
             IGameFactory gameFactory,
             LoadingCurtainProvider loadingCurtainProvider,
             IPersistentProgressService persistentProgressService,
-            IStaticDataService staticDataService)
+            IStaticDataService staticDataService, IUIFactory uiFactory)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -40,6 +39,7 @@ namespace Code.Infrastructure.States
             _loadingCurtainProvider = loadingCurtainProvider;
             _persistentProgressService = persistentProgressService;
             _staticDataService = staticDataService;
+            _uiFactory = uiFactory;
         }
 
         public void Enter(string sceneName)
@@ -51,12 +51,12 @@ namespace Code.Infrastructure.States
 
         public void Exit()
         {
-            // _curtain.Hide();
             _loadingCurtainProvider.Instance.Hide();
         }
 
         private void OnLoaded()
         {
+            InitUIRoot();
             InitGameWorld();
             InformProgressReaders();
 
@@ -74,7 +74,10 @@ namespace Code.Infrastructure.States
             InitHud(hero);
             CameraFollow(hero);
         }
-        
+
+        private void InitUIRoot() => 
+            _uiFactory.CreateUIRoot();
+
         private Vector3 GetHeroSpawnPosition() => 
             GameObject.FindWithTag(InitialPointTag).transform.position;
 

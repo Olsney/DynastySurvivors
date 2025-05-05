@@ -2,6 +2,7 @@ using System.Linq;
 using Code.Logic;
 using Code.Logic.EnemySpawners;
 using Code.StaticData;
+using Code.StaticData.Level;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;

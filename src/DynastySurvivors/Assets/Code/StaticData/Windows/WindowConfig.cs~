@@ -1,0 +1,26 @@
+using System;
+using Code.UI.Services.Windows;
+using Code.UI.Windows;
+using Sirenix.OdinInspector;
+using UnityEngine;
+
+namespace Code.StaticData.Windows
+{
+    [Serializable]
+    public class WindowConfig
+    {
+        [HorizontalGroup("Row", Width = 100)]
+        [HideLabel]
+        [GUIColor(0.8f, 1f, 0.8f)]
+        [LabelText("Window ID")]
+        public WindowId WindowId;
+
+        [HorizontalGroup("Row")]
+        [HideLabel]
+        [LabelWidth(80)]
+        [PreviewField(80, ObjectFieldAlignment.Left)]
+        [GUIColor(1f, 1f, 0.85f)]
+        [Tooltip("Prefab to spawn for this window.")]
+        public WindowBase Prefab;
+    }
+}

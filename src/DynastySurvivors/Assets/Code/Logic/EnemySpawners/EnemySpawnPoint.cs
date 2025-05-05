@@ -1,4 +1,4 @@
-using Code.Services.StaticData.Enemy;
+using Code.StaticData.Enemy;
 using UnityEngine;
 
 namespace Code.Logic.EnemySpawners

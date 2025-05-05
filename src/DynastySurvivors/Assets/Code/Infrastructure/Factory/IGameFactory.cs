@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using Code.Enemy;
 using Code.Infrastructure.Services;
 using Code.Services.PersistentProgress;
-using Code.Services.StaticData.Enemy;
-using Code.Services.StaticData.Hero;
+using Code.StaticData.Enemy;
+using Code.StaticData.Hero;
 using UnityEngine;
 
 namespace Code.Infrastructure.Factory

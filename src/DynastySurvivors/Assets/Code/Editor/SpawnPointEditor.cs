@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Logic.EnemySpawners;
-using Code.Services.StaticData.Enemy;
+using Code.StaticData.Enemy;
 using UnityEditor;
 using UnityEngine;
 

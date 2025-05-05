@@ -38,6 +38,7 @@ namespace Code.UI.Services.Factory
         {
             GameObject prefab = _assets.Load(UIRootPath);
             _uiRoot = _container.InstantiatePrefab(prefab).transform;
+            _uiRoot = root.transform; // <-- теперь это объект В СЦЕНЕ
         }
     }
 }

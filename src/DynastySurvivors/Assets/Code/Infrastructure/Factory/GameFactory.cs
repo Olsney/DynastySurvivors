@@ -9,10 +9,11 @@ using Code.Logic.EnemySpawners;
 using Code.Services.PersistentProgress;
 using Code.Services.Random;
 using Code.Services.StaticData;
-using Code.Services.StaticData.Enemy;
-using Code.Services.StaticData.Hero;
+using Code.StaticData.Enemy;
+using Code.StaticData.Hero;
 using Code.UI;
 using Code.UI.Elements;
+using Code.UI.Services.Windows;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -28,6 +29,7 @@ namespace Code.Infrastructure.Factory
         private readonly IRandomService _randomService;
         private readonly IPersistentProgressService _persistentProgressService;
         private readonly IIdentifierService _identifierService;
+        private readonly IWindowService _windowService;
 
         private GameObject _heroGameObject;
 
@@ -43,8 +45,7 @@ namespace Code.Infrastructure.Factory
             IStaticDataService staticData, 
             IRandomService randomService,
             IPersistentProgressService persistentProgressService, 
-            IIdentifierService identifierService
-            )
+            IIdentifierService identifierService, IWindowService windowService)
         {
             _assets = assets;
             _container = container;
@@ -52,6 +53,7 @@ namespace Code.Infrastructure.Factory
             _randomService = randomService;
             _persistentProgressService = persistentProgressService;
             _identifierService = identifierService;
+            _windowService = windowService;
         }
 
 
@@ -89,6 +91,9 @@ namespace Code.Infrastructure.Factory
 
             hud.GetComponentInChildren<LootCounter>()
                 .Construct(_persistentProgressService.Progress.WorldData);
+
+            foreach (OpenWindowButton openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
+                openWindowButton.Construct(_windowService);
             
             return hud;
         }

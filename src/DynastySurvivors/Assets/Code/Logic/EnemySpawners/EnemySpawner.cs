@@ -3,8 +3,8 @@ using Code.Infrastructure.Factory;
 using Code.Infrastructure.Services.Identifiers;
 using Code.Services.PersistentProgress;
 using Code.Services.Random;
-using Code.Services.StaticData.Enemy;
 using Code.Services.Times;
+using Code.StaticData.Enemy;
 using UnityEngine;
 using Zenject;
 

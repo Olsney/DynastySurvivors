@@ -7,6 +7,7 @@ namespace Code.Enemy
     public class EnemyAreaPassiveAttack : EnemyAttack
     {
         [SerializeField] private TriggerObserver _attackZone;
+        
         private float _attackDamage;
         private float _attackCooldown;
         

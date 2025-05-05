@@ -38,13 +38,13 @@ namespace Code.Enemy
             _agent.enabled = false;
             _animator.PlayDeath();
 
-            SpawnDeathFx();
+            PlayDeathFx();
             StartCoroutine(DestroyAfterDelay(gameObject));
 
             Died?.Invoke();
         }
 
-        private void SpawnDeathFx()
+        private void PlayDeathFx()
         {
             GameObject deathEffect = Instantiate(_deathFx, transform.position, Quaternion.identity);
             

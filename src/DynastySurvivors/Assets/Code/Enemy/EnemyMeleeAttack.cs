@@ -1,8 +1,6 @@
-﻿using Code.Infrastructure.Factory;
-using Code.Logic;
+﻿using Code.Logic;
 using Code.Services.Times;
 using UnityEngine;
-using Zenject;
 
 namespace Code.Enemy
 {
@@ -87,7 +85,6 @@ namespace Code.Enemy
             if (IsHitted(out Collider hit) == false)
                 return;
 
-            PhysicsDebugHelpers.DrawRaysFromPoint(GetAttackStartPosition(), _attackCleavage, Color.red, 1f);
             IDamageable heroHealth = hit.transform.GetComponent<IDamageable>();
 
             if (hit == null)

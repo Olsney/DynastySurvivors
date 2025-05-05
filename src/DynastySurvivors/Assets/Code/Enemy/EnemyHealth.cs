@@ -40,10 +40,10 @@ namespace Code.Enemy
             
             Changed?.Invoke();
             
-            SpawnDamageEffect();
+            PlayDamageEffect();
         }
 
-        private void SpawnDamageEffect()
+        private void PlayDamageEffect()
         {
             GameObject damageEffect = Instantiate(_takeDamageEffectPrefab, _takeDamageEffectSpawnPoint.position, Quaternion.identity);
             

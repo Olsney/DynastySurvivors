@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 6434797435008836847}
   - component: {fileID: 6425752689537281212}
   m_Layer: 5
-  m_Name: Amount_text
+  m_Name: LootValue_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1011,6 +1011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeButton: {fileID: 6328370323404006884}
+  _lootValue: {fileID: 6434797435008836847}
 --- !u!1001 &51106562833234661
 PrefabInstance:
   m_ObjectHideFlags: 0

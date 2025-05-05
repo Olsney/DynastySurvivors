@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 
 namespace Code.StaticData
 {
-    [CreateAssetMenu(fileName = "LevelData", menuName = "StaticData/Level")]
+    [CreateAssetMenu(fileName = "LevelData", menuName = "StaticData/LevelData")]
     public class LevelStaticData : ScriptableObject
     {
         [FoldoutGroup("⚙️ General Settings", expanded: true)]

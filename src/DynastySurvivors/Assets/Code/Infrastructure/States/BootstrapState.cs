@@ -1,3 +1,4 @@
+using Code.Services.StaticData;
 using Code.Services.StaticData.Enemy;
 
 namespace Code.Infrastructure.States
@@ -23,6 +24,7 @@ namespace Code.Infrastructure.States
             _staticData.LoadAllEnemies();
             _staticData.LoadAllHeroes();
             _staticData.LoadAllLevels();
+            _staticData.LoadAllWindows();
         }
 
         private void EnterLoadLevel() => 

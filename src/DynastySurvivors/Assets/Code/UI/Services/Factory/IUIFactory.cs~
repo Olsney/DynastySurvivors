@@ -1,7 +1,0 @@
-namespace Code.UI.Services
-{
-    public interface IUIFactory
-    {
-        void CreateShop();
-    }
-}

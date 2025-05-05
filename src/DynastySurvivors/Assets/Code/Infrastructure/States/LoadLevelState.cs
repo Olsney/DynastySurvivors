@@ -3,6 +3,7 @@ using Code.Infrastructure.Factory;
 using Code.Logic;
 using Code.Logic.Curtain;
 using Code.Services.PersistentProgress;
+using Code.Services.StaticData;
 using Code.Services.StaticData.Enemy;
 using Code.Services.StaticData.Hero;
 using Code.StaticData;

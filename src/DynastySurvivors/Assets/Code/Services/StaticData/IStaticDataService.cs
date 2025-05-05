@@ -1,8 +1,11 @@
 ﻿using Code.Infrastructure.Services;
+using Code.Services.StaticData.Enemy;
 using Code.Services.StaticData.Hero;
 using Code.StaticData;
+using Code.StaticData.Windows;
+using Code.UI.Services.Windows;
 
-namespace Code.Services.StaticData.Enemy
+namespace Code.Services.StaticData
 {
     public interface IStaticDataService : IService
     {
@@ -12,5 +15,7 @@ namespace Code.Services.StaticData.Enemy
         HeroStaticData GetHero(HeroTypeId typeId);
         void LoadAllLevels();
         LevelStaticData GetLevel(string sceneKey);
+        WindowConfig GetWindow(WindowId shop);
+        void LoadAllWindows();
     }
 }

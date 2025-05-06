@@ -12,7 +12,7 @@
 
 - 🧩 **Zenject (Extenject)** — dependency injection framework
 - 🧾 **ScriptableObjects** — data-driven configs and balancing
-- 🔄 **Service & Patterns** - `GameFactory`, `InputService`, `SaveLoadService`, and more
+- 🔄 **Services & Patterns** - `GameFactory`, `InputService`, `SaveLoadService`, and more
 - 🤖 **NavMesh-based AI** — pathfinding + animations
 - 💾 **Save/Load system** — interface-based progress tracking
 - 🛠️ **Custom Editor Tools** — static data collectors, inspector buttons

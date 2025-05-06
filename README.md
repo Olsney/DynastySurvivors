@@ -20,7 +20,7 @@ Survival game built with a focus on **OOP Architecture**
 - 🧾 **ScriptableObjects** — data-driven configs and balancing
 - 🔄 **Services & Patterns** - `GameFactory`, `InputService`, `SaveLoadService`, and more
 - 🤖 **NavMesh-based AI** — pathfinding + animations
-- 💾 **Save/Load system** — interface-based progress tracking
+- 💾 **Save/Load system** — progress tracking
 - 🛠️ **Custom Editor Tools** — static data collectors, inspector buttons
 - 🧭 **Gizmo-based visualization** — enemy spawner debug tools
 
@@ -29,11 +29,9 @@ Survival game built with a focus on **OOP Architecture**
 ## 🧱 Architecture Highlights
 
 - 🧠 **Dependency Injection**: services and factories injected via **Zenject**
-- 🏗️ **Modular Systems**: `GameFactory`, `UIFactory`, `WindowService`, etc.
-- 🎮 **Game Flow Management**: bootstrap → load → gameplay loop
-- 🪟 **UI Architecture**: window-based system using UIFactory
-- 📦 **Data-Driven Design**: enemies, items, levels, UI are fully configurable
-- 🧪 **Editor Enhancements**: auto-collect spawners, quick test buttons
+- 🎮 **Game Loop Management**: bootstrap → load → gameplay loop
+- 🪟 **UI**: window-based system using UIFactory
+- 📦 **Data**: enemies, items, levels, UI are fully configurable
 - 💰 **Loot system** with pickups and an upgradeable shop
 - 🧃 **Dynamic resource collection**
 - 🧠 **Persistent progress system** (save/load)

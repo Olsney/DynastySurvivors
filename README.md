@@ -8,6 +8,12 @@
 
 ---
 
+## 📝 About the Game
+
+Survival game built with a focus on **OOP Architecture**
+
+---
+
 ## ⚙️ Tech Stack
 
 - 🧩 **Zenject (Extenject)** — dependency injection framework
